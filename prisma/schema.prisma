@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -19,10 +13,71 @@ model ContentHistory {
   title       String
   prompt      String
   result      String
+  editedResult String?
   tone        String?
   platform    String?
   audience    String?
   language    String?
   length      String?
+  status      String   @default("draft") // draft|approved|scheduled|published
+  sourceContentId String? // for repurposed content, points to original
+  tags        String?  // comma-separated tags
   createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  versions    ContentVersion[]
+  schedules   Schedule[]
+  analytics   Analytics[]
+}
+
+model ContentVersion {
+  id        String   @id @default(cuid())
+  contentId String
+  version   Int
+  result    String
+  createdAt DateTime @default(now())
+
+  content   ContentHistory @relation(fields: [contentId], references: [id], onDelete: Cascade)
+}
+
+model Template {
+  id          String   @id @default(cuid())
+  name        String
+  contentType String   // blog|social|marketing|email|product|video
+  prompt      String
+  tone        String?
+  platform    String?
+  audience    String?
+  language    String  @default("id")
+  length      String?
+  isDefault   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Schedule {
+  id          String   @id @default(cuid())
+  contentId   String
+  platform    String   // instagram|twitter|facebook|linkedin|tiktok|youtube|email
+  scheduledAt DateTime
+  status      String   @default("queued") // queued|sent|failed
+  createdAt   DateTime @default(now())
+
+  content     ContentHistory @relation(fields: [contentId], references: [id], onDelete: Cascade)
+}
+
+model Analytics {
+  id          String   @id @default(cuid())
+  contentId   String
+  platform    String
+  views       Int      @default(0)
+  likes       Int      @default(0)
+  shares      Int      @default(0)
+  comments    Int      @default(0)
+  clicks      Int      @default(0)
+  conversionRate Float  @default(0)
+  date        DateTime @default(now())
+  createdAt   DateTime @default(now())
+
+  content     ContentHistory @relation(fields: [contentId], references: [id], onDelete: Cascade)
 }

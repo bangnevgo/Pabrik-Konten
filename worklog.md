@@ -1,31 +1,58 @@
----
-Task ID: 2
-Agent: full-stack-developer
-Task: Build Pabrik Konten (Content Factory) web application
+# Pabrik Konten v2.0 — Worklog
 
-Work Log:
-- Updated Prisma schema with ContentHistory model
-- Ran db:push to sync database
-- Created Zustand store (src/lib/store.ts) for state management
-- Created API route for content generation (/api/generate/route.ts) using z-ai-web-dev-sdk
-- Created API route for content history CRUD (/api/history/route.ts)
-- Created theme toggle component with CSS-based dark mode transition
-- Created output display component with copy, save, and regenerate actions
-- Created 6 content generator components: blog, social, marketing, email, product, video
-- Created history panel with filter, view, and delete functionality
-- Created main content factory component with tabs and layout
-- Updated page.tsx and layout.tsx with ThemeProvider and metadata
-- Added @tailwindcss/typography plugin for markdown rendering
-- Fixed ESLint error (setState in effect) in theme toggle
-- All lint checks pass, dev server compiles successfully
+## Date: 2026-05-28
 
-Stage Summary:
-- Complete Content Factory application with 6 content types (Blog, Sosmed, Marketing, Email, Produk, Video)
-- AI-powered generation using z-ai-web-dev-sdk with Indonesian and English support
-- Content history with CRUD operations and type filtering
-- Dark mode with next-themes and CSS transitions
-- Responsive design with mobile-friendly layout
-- Emerald/teal color scheme with gradient hero section
-- Framer Motion animations throughout
-- Markdown rendering with Tailwind Typography plugin
-- Toast notifications for user actions
+### Summary
+Transformed Pabrik Konten from a simple 6-tab content generator into a full Content Factory with 7 views, sidebar navigation, and advanced features.
+
+### Changes Made
+
+#### 1. Prisma Schema Update
+- Expanded `ContentHistory` model with new fields: `editedResult`, `status`, `sourceContentId`, `tags`, `updatedAt`
+- Added `ContentVersion` model for version tracking
+- Added `Template` model for template bank
+- Added `Schedule` model for content scheduling
+- Added `Analytics` model for performance tracking
+- Ran `bun run db:push` to sync database
+
+#### 2. Zustand Store Update
+- Added `AppView` type with 7 views: create, repurpose, batch, templates, library, calendar, analytics
+- Added `TemplateItem`, `ScheduleItem`, `AnalyticsItem` interfaces
+- Added `repurposeSource` state for cross-view communication
+- Added `searchQuery`, `templates`, `schedules`, `analytics` state
+- Added `setActiveView` for navigation
+
+#### 3. API Routes
+- **Updated `/api/generate/route.ts`**: Added batch generation mode (`mode: 'batch'`) and repurpose mode (`mode: 'repurpose'`)
+- **Updated `/api/history/route.ts`**: Added search, tag filtering, status filtering, versioning (PUT endpoint), include versions in GET
+- **Created `/api/templates/route.ts`**: CRUD for template bank
+- **Created `/api/schedule/route.ts`**: CRUD for content scheduling
+- **Created `/api/analytics/route.ts`**: GET with aggregation/summary/byType, POST for adding data
+- **Created `/api/seed-analytics/route.ts`**: POST endpoint to seed demo analytics data
+
+#### 4. New UI Components
+
+- **`repurpose-engine.tsx`**: Source content textarea + library selector, 7 target format checkboxes, visual flow diagram, parsed output in tabs with individual Copy/Save
+- **`batch-generator.tsx`**: Single brief input, format checkboxes, common settings (tone/audience/language/length), grid output with per-format cards
+- **`template-bank.tsx`**: Template grid with type filters, create dialog with variable placeholders, use/delete actions
+- **`enhanced-library.tsx`**: Search bar, type/status filters, content cards with tags/status badges, detail dialog with edit mode, version history, status change, repurpose button, inline editing
+- **`content-calendar.tsx`**: Month view calendar grid, navigation (prev/next/today), scheduled items as badges, schedule dialog, status indicators
+- **`analytics-dashboard.tsx`**: 6 summary cards, bar chart (content type performance), pie chart (platform distribution), insights section, top 10 table, seed demo data button, add analytics dialog
+
+#### 5. Updated Components
+
+- **`output-display.tsx`**: Added edit mode toggle, tags input, status selector, repurpose button, schedule dialog, save as new version
+- **`content-factory.tsx`**: Complete restructure with sidebar navigation (desktop 220px sidebar + mobile hamburger + bottom nav), 7 views, header with gradient
+
+#### 6. Lint Fixes
+- Moved function declarations before useEffect calls (content-calendar.tsx, template-bank.tsx)
+- Added missing Button import in content-factory.tsx
+- Replaced `FileTemplate` (non-existent) with `LayoutTemplate` in lucide-react imports
+- Removed unused eslint-disable directives and used proper typing in history/route.ts
+
+### All text in Bahasa Indonesia ✓
+### Emerald/teal color scheme ✓
+### shadcn/ui components ✓
+### Mobile responsive ✓
+### Dark mode support ✓
+### Framer Motion animations ✓

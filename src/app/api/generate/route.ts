@@ -10,6 +10,8 @@ const systemPrompts: Record<string, string> = {
   video: `Kamu adalah scriptwriter video profesional. Buatkan skrip video yang engaging sesuai platform, dengan hook yang kuat di awal dan call-to-action di akhir. Sertakan visual cues dan timing. Gunakan format markdown.`,
 }
 
+const repurposePrompt = `Kamu adalah ahli repurposing konten. Tugas kamu adalah mengubah satu konten menjadi berbagai format lain dengan mempertahankan pesan inti tapi menyesuaikan gaya, panjang, dan format untuk setiap platform. Untuk setiap format, buat konten yang siap pakai. Pisahkan setiap format dengan baris "---FORMAT---" dan awali dengan nama format dalam format "## [Nama Format]".`
+
 const toneMap: Record<string, string> = {
   professional: 'profesional',
   casual: 'kasual/santai',
@@ -27,13 +29,59 @@ const lengthMap: Record<string, string> = {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { contentType, prompt, tone, platform, targetAudience, language, length } = body
+    const { contentType, prompt, tone, platform, targetAudience, language, length, mode, sourceContent, targetFormats } = body
 
+    if (mode === 'batch' && prompt) {
+      const formats = targetFormats || ['blog', 'social', 'email']
+      const zai = new ZAI()
+      const results: Record<string, string> = {}
+
+      for (const fmt of formats) {
+        const sysPrompt = systemPrompts[fmt] || systemPrompts.blog
+        const toneDesc = toneMap[tone] || tone || 'profesional'
+        const lengthDesc = lengthMap[length] || lengthMap.medium
+
+        const userPrompt = language === 'en'
+          ? `Write ${fmt} content about: "${prompt}"\nTone: ${tone}\nLength: ${lengthDesc}\nTarget audience: ${targetAudience || 'general'}${platform ? `\nPlatform: ${platform}` : ''}`
+          : `Buatkan konten ${fmt} tentang: "${prompt}"\nGaya bahasa: ${toneDesc}\nPanjang: ${lengthDesc}\nTarget audiens: ${targetAudience || 'umum'}${platform ? `\nPlatform: ${platform}` : ''}`
+
+        const response = await zai.chat.completions.create({
+          model: 'default',
+          messages: [
+            { role: 'system', content: sysPrompt },
+            { role: 'user', content: userPrompt },
+          ],
+        })
+
+        results[fmt] = response.choices?.[0]?.message?.content || ''
+      }
+
+      return NextResponse.json({ mode: 'batch', results })
+    }
+
+    if (mode === 'repurpose' && sourceContent) {
+      const formats = targetFormats || ['social', 'email', 'video']
+      const zai = new ZAI()
+
+      const userPrompt = language === 'en'
+        ? `Repurpose the following content into these formats: ${formats.join(', ')}\n\nSource content:\n${sourceContent}\n\nCreate a complete version for each format.`
+        : `Ubah konten berikut ke format: ${formats.join(', ')}\n\nKonten sumber:\n${sourceContent}\n\nBuat versi lengkap untuk setiap format.`
+
+      const response = await zai.chat.completions.create({
+        model: 'default',
+        messages: [
+          { role: 'system', content: repurposePrompt },
+          { role: 'user', content: userPrompt },
+        ],
+      })
+
+      const content = response.choices?.[0]?.message?.content || ''
+      return NextResponse.json({ mode: 'repurpose', content })
+    }
+
+    // Default single generation
     if (!contentType || !prompt) {
-      return NextResponse.json(
-        { error: 'Tipe konten dan topik/deskripsi wajib diisi' },
-        { status: 400 }
-      )
+      return NextResponse.json({ error: 'Tipe konten dan topik/deskripsi wajib diisi' }, { status: 400 })
     }
 
     const systemPrompt = systemPrompts[contentType] || systemPrompts.blog
@@ -41,17 +89,12 @@ export async function POST(request: NextRequest) {
     const lengthDesc = lengthMap[length] || lengthMap.medium
 
     let userPrompt = ''
-
     if (language === 'en') {
       userPrompt = `Write a ${contentType} content about: "${prompt}"\n\nTone: ${tone}\nLength: ${lengthDesc}\nTarget audience: ${targetAudience || 'general'}`
-      if (platform) {
-        userPrompt += `\nPlatform: ${platform}`
-      }
+      if (platform) userPrompt += `\nPlatform: ${platform}`
     } else {
       userPrompt = `Buatkan konten ${contentType} tentang: "${prompt}"\n\nGaya bahasa: ${toneDesc}\nPanjang: ${lengthDesc}\nTarget audiens: ${targetAudience || 'umum'}`
-      if (platform) {
-        userPrompt += `\nPlatform: ${platform}`
-      }
+      if (platform) userPrompt += `\nPlatform: ${platform}`
     }
 
     const zai = new ZAI()
@@ -64,20 +107,13 @@ export async function POST(request: NextRequest) {
     })
 
     const generatedContent = response.choices?.[0]?.message?.content || ''
-
     if (!generatedContent) {
-      return NextResponse.json(
-        { error: 'Gagal menghasilkan konten. Silakan coba lagi.' },
-        { status: 500 }
-      )
+      return NextResponse.json({ error: 'Gagal menghasilkan konten. Silakan coba lagi.' }, { status: 500 })
     }
 
     return NextResponse.json({ content: generatedContent })
   } catch (error) {
     console.error('Generate API error:', error)
-    return NextResponse.json(
-      { error: 'Terjadi kesalahan saat menghasilkan konten. Silakan coba lagi.' },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: 'Terjadi kesalahan saat menghasilkan konten. Silakan coba lagi.' }, { status: 500 })
   }
 }
