@@ -6,6 +6,7 @@ import {
   ChevronLeft, ChevronRight, Calendar as CalendarIcon, Plus, Trash2,
   Clock, CheckCircle, XCircle, Filter
 } from 'lucide-react'
+import { PresetIcon } from '@/components/premium-icons'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -174,7 +175,7 @@ export function ContentCalendar() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 className="text-xl font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-2">
-              📅 Kalender Konten
+              <PresetIcon preset="calendar" size="md" variant="gradient" /> Kalender Konten
             </h2>
             <p className="text-sm text-muted-foreground">Jadwalkan dan kelola publikasi konten</p>
           </div>

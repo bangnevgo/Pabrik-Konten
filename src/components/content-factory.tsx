@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  Factory, Menu, X, ChevronRight
+  Menu, X, ChevronRight
 } from 'lucide-react'
 import { PresetIcon } from '@/components/premium-icons'
 import { Button } from '@/components/ui/button'

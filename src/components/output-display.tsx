@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import ReactMarkdown from 'react-markdown'
 import { Copy, Save, RefreshCw, Check, Edit3, Tag, RefreshCw as RepurposeIcon, Calendar, Send } from 'lucide-react'
+import { PresetIcon } from '@/components/premium-icons'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -191,7 +192,7 @@ export function OutputDisplay({
     return (
       <Card className="h-full border-dashed border-2 border-muted-foreground/25">
         <CardContent className="p-6 flex flex-col items-center justify-center min-h-[300px] text-center">
-          <div className="text-5xl mb-4">✨</div>
+              <PresetIcon preset="create" size="lg" variant="light" className="mb-4" />
           <h3 className="text-lg font-semibold text-muted-foreground mb-2">
             Hasil Konten Akan Muncul Di Sini
           </h3>

@@ -43,12 +43,12 @@ import { useContentStore, type ContentType, type HistoryItem } from '@/lib/store
 import { useToast } from '@/hooks/use-toast'
 
 const contentTypeLabels: Record<string, string> = {
-  blog: '📝 Artikel',
-  social: '📱 Sosmed',
-  marketing: '🎯 Marketing',
-  email: '✉️ Email',
-  product: '🛍️ Produk',
-  video: '🎬 Video',
+  blog: 'Artikel',
+  social: 'Sosmed',
+  marketing: 'Marketing',
+  email: 'Email',
+  product: 'Produk',
+  video: 'Video',
 }
 
 const contentTypeColors: Record<string, string> = {
@@ -194,7 +194,7 @@ export function EnhancedLibrary() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 className="text-xl font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-2">
-              📚 Perpustakaan Konten
+              <PresetIcon preset="library" size="md" variant="gradient" /> Perpustakaan Konten
             </h2>
             <p className="text-sm text-muted-foreground">Kelola semua konten yang telah dibuat</p>
           </div>
@@ -262,7 +262,7 @@ export function EnhancedLibrary() {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <Card className="border-dashed border-2 border-muted-foreground/25">
             <CardContent className="p-10 flex flex-col items-center justify-center text-center">
-              <div className="text-5xl mb-4">📭</div>
+              <PresetIcon preset="inbox" size="lg" variant="light" className="mb-4" />
               <h3 className="text-lg font-semibold text-muted-foreground mb-2">Belum Ada Konten</h3>
               <p className="text-sm text-muted-foreground">Konten yang disimpan akan muncul di sini</p>
             </CardContent>
@@ -285,9 +285,12 @@ export function EnhancedLibrary() {
                 >
                   <CardContent className="p-4">
                     <div className="flex items-start justify-between gap-2 mb-2">
-                      <Badge variant="secondary" className={`text-[10px] ${contentTypeColors[item.contentType] || ''}`}>
-                        {contentTypeLabels[item.contentType] || item.contentType}
-                      </Badge>
+                      <div className="flex items-center gap-1.5">
+                        <PresetIcon preset={item.contentType as any} size="sm" variant="light" />
+                        <Badge variant="secondary" className={`text-[10px] ${contentTypeColors[item.contentType] || ''}`}>
+                          {contentTypeLabels[item.contentType] || item.contentType}
+                        </Badge>
+                      </div>
                       <div className="flex items-center gap-1">
                         <Badge variant="secondary" className={`text-[10px] ${statusLabels[item.status]?.color || ''}`}>
                           {statusLabels[item.status]?.label || item.status}

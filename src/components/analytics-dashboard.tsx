@@ -6,6 +6,7 @@ import {
   Eye, Heart, Share2, MessageCircle, MousePointerClick, TrendingUp,
   Database, BarChart3, PieChart as PieChartIcon, RefreshCw, Plus
 } from 'lucide-react'
+import { PresetIcon } from '@/components/premium-icons'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
@@ -227,7 +228,7 @@ export function AnalyticsDashboard() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 className="text-xl font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-2">
-              📊 Dashboard Analytics
+              <PresetIcon preset="analytics" size="md" variant="gradient" /> Dashboard Analytics
             </h2>
             <p className="text-sm text-muted-foreground">Pantau performa konten di berbagai platform</p>
           </div>
@@ -255,7 +256,7 @@ export function AnalyticsDashboard() {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <Card className="border-dashed border-2 border-muted-foreground/25">
             <CardContent className="p-10 flex flex-col items-center justify-center text-center">
-              <div className="text-5xl mb-4">📊</div>
+              <PresetIcon preset="analytics" size="lg" variant="light" />
               <h3 className="text-lg font-semibold text-muted-foreground mb-2">Belum Ada Data Analytics</h3>
               <p className="text-sm text-muted-foreground mb-4">Klik &quot;Data Demo&quot; untuk mengisi data contoh, atau tambahkan data secara manual</p>
               <div className="flex gap-2">
@@ -357,7 +358,7 @@ export function AnalyticsDashboard() {
               <Card className="border-emerald-200/50 dark:border-emerald-900/50">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2 text-emerald-700 dark:text-emerald-400">
-                    💡 Wawasan & Rekomendasi
+                    <PresetIcon preset="lightbulb" size="sm" variant="gradient" /> Wawasan & Rekomendasi
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
