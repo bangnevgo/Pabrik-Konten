@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   Menu, X, ChevronRight
 } from 'lucide-react'
-import { PresetIcon } from '@/components/premium-icons'
+import { PresetIcon, PremiumNavIcon } from '@/components/premium-icons'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ThemeToggle } from '@/components/theme-toggle'
@@ -59,7 +59,12 @@ export function ContentFactory() {
                     value={tab.value}
                     className="flex-1 min-w-[70px] data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all text-xs sm:text-sm gap-1.5"
                   >
-                    <PresetIcon preset={tab.preset as any} size="sm" variant="light" className={activeTab === tab.value ? 'bg-white/20 !text-white' : ''} />
+                    <PremiumNavIcon
+                      preset={tab.preset as any}
+                      active={activeTab === tab.value}
+                      size="xs"
+                      className={activeTab === tab.value ? '!bg-white/20 !text-white !ring-white/20' : ''}
+                    />
                     {tab.label}
                   </TabsTrigger>
                 ))}
@@ -114,9 +119,9 @@ export function ContentFactory() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2.5"
             >
-              <PresetIcon preset="factory" size="lg" variant="gradient" className="bg-white/20 !bg-gradient-to-br !from-white/30 !to-white/10 !text-white !shadow-none" />
+              <PresetIcon preset="factory" size="lg" variant="gradient" className="!bg-gradient-to-br !from-white/30 !via-white/20 !to-white/10 !text-white !shadow-none !ring-white/30" noShimmer />
               <div>
                 <h1 className="text-lg sm:text-2xl font-bold text-white tracking-tight">
                   PABRIK KONTEN
@@ -134,12 +139,12 @@ export function ContentFactory() {
             className="flex items-center gap-2"
           >
             {currentNav && (
-              <div className="hidden sm:flex items-center gap-1.5 text-emerald-100 text-xs bg-white/10 rounded-lg px-2.5 py-1.5">
-                <PresetIcon preset={currentNav.preset as any} size="sm" variant="light" className="bg-white/20 !text-white" />
+              <div className="hidden sm:flex items-center gap-1.5 text-emerald-100 text-xs bg-white/10 backdrop-blur-sm rounded-lg px-2.5 py-1.5 ring-1 ring-white/10">
+                <PresetIcon preset={currentNav.preset as any} size="xs" variant="gradient" className="!bg-white/20 !text-white !shadow-none !ring-white/20" noShimmer />
                 <span>{currentNav.label}</span>
               </div>
             )}
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-1">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-1 ring-1 ring-white/10">
               <ThemeToggle />
             </div>
           </motion.div>
@@ -151,27 +156,34 @@ export function ContentFactory() {
         {/* Desktop Sidebar */}
         <aside className="hidden lg:flex flex-col w-[220px] border-r bg-card/50 shrink-0">
           <nav className="flex-1 p-3 space-y-1">
-            {navItems.map((item) => (
-              <button
-                key={item.view}
-                onClick={() => setActiveView(item.view)}
-                className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
-                  activeView === item.view
-                    ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800'
-                    : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-                }`}
-              >
-                <PresetIcon preset={item.preset as any} size="sm" variant={activeView === item.view ? 'gradient' : 'light'} />
-                <span>{item.label}</span>
-                {activeView === item.view && (
-                  <ChevronRight className="size-3.5 ml-auto text-emerald-500" />
-                )}
-              </button>
-            ))}
+            {navItems.map((item) => {
+              const isActive = activeView === item.view
+              return (
+                <button
+                  key={item.view}
+                  onClick={() => setActiveView(item.view)}
+                  className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 group ${
+                    isActive
+                      ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 shadow-sm ring-1 ring-emerald-200/60 dark:ring-emerald-800/40'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                  }`}
+                >
+                  <PremiumNavIcon
+                    preset={item.preset as any}
+                    active={isActive}
+                    size="sm"
+                  />
+                  <span>{item.label}</span>
+                  {isActive && (
+                    <ChevronRight className="size-3.5 ml-auto text-emerald-500" />
+                  )}
+                </button>
+              )
+            })}
           </nav>
           <div className="p-3 border-t">
             <div className="flex items-center justify-center gap-1.5 text-[10px] text-muted-foreground">
-              <PresetIcon preset="factory" size="sm" variant="light" /> Pabrik Konten v2.0
+              <PresetIcon preset="factory" size="xs" variant="light" noShimmer /> Pabrik Konten v2.0
             </div>
           </div>
         </aside>
@@ -196,7 +208,7 @@ export function ContentFactory() {
               >
                 <div className="flex items-center justify-between p-4 border-b">
                   <div className="flex items-center gap-2">
-                    <PresetIcon preset="factory" size="md" variant="gradient" />
+                    <PresetIcon preset="factory" size="md" variant="gradient" noShimmer />
                     <span className="font-bold text-sm">PABRIK KONTEN</span>
                   </div>
                   <Button variant="ghost" size="icon" className="size-8" onClick={() => setSidebarOpen(false)}>
@@ -204,26 +216,33 @@ export function ContentFactory() {
                   </Button>
                 </div>
                 <nav className="p-3 space-y-1">
-                  {navItems.map((item) => (
-                    <button
-                      key={item.view}
-                      onClick={() => { setActiveView(item.view); setSidebarOpen(false) }}
-                      className={`w-full flex items-center gap-2.5 px-3 py-3 rounded-lg text-sm font-medium transition-all ${
-                        activeView === item.view
-                          ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800'
-                          : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-                      }`}
-                    >
-                      <PresetIcon preset={item.preset as any} size="sm" variant={activeView === item.view ? 'gradient' : 'light'} />
-                      <div className="text-left">
-                        <div>{item.label}</div>
-                        <div className="text-[10px] text-muted-foreground font-normal">{item.description}</div>
-                      </div>
-                      {activeView === item.view && (
-                        <ChevronRight className="size-3.5 ml-auto text-emerald-500" />
-                      )}
-                    </button>
-                  ))}
+                  {navItems.map((item) => {
+                    const isActive = activeView === item.view
+                    return (
+                      <button
+                        key={item.view}
+                        onClick={() => { setActiveView(item.view); setSidebarOpen(false) }}
+                        className={`w-full flex items-center gap-2.5 px-3 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+                          isActive
+                            ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 shadow-sm ring-1 ring-emerald-200/60 dark:ring-emerald-800/40'
+                            : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                        }`}
+                      >
+                        <PremiumNavIcon
+                          preset={item.preset as any}
+                          active={isActive}
+                          size="sm"
+                        />
+                        <div className="text-left">
+                          <div>{item.label}</div>
+                          <div className="text-[10px] text-muted-foreground font-normal">{item.description}</div>
+                        </div>
+                        {isActive && (
+                          <ChevronRight className="size-3.5 ml-auto text-emerald-500" />
+                        )}
+                      </button>
+                    )
+                  })}
                 </nav>
               </motion.aside>
             </>
@@ -248,20 +267,27 @@ export function ContentFactory() {
       {/* Mobile Bottom Navigation */}
       <nav className="lg:hidden border-t bg-card/80 backdrop-blur-sm">
         <div className="flex items-center justify-around py-1 px-1">
-          {navItems.map((item) => (
-            <button
-              key={item.view}
-              onClick={() => setActiveView(item.view)}
-              className={`flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-lg text-[10px] font-medium transition-colors min-w-[48px] ${
-                activeView === item.view
-                  ? 'text-emerald-600 dark:text-emerald-400'
-                  : 'text-muted-foreground'
-              }`}
-            >
-              <PresetIcon preset={item.preset as any} size="sm" variant={activeView === item.view ? 'gradient' : 'light'} />
-              <span className="truncate max-w-[56px]">{item.label}</span>
-            </button>
-          ))}
+          {navItems.map((item) => {
+            const isActive = activeView === item.view
+            return (
+              <button
+                key={item.view}
+                onClick={() => setActiveView(item.view)}
+                className={`flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-xl text-[10px] font-medium transition-all duration-200 min-w-[48px] ${
+                  isActive
+                    ? 'text-emerald-600 dark:text-emerald-400'
+                    : 'text-muted-foreground'
+                }`}
+              >
+                <PremiumNavIcon
+                  preset={item.preset as any}
+                  active={isActive}
+                  size="xs"
+                />
+                <span className="truncate max-w-[56px]">{item.label}</span>
+              </button>
+            )
+          })}
         </div>
       </nav>
 

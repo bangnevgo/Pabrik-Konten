@@ -6,7 +6,7 @@ import {
   Eye, Heart, Share2, MessageCircle, MousePointerClick, TrendingUp,
   Database, BarChart3, PieChart as PieChartIcon, RefreshCw, Plus
 } from 'lucide-react'
-import { PresetIcon } from '@/components/premium-icons'
+import { PresetIcon, PremiumStatIcon } from '@/components/premium-icons'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
@@ -214,12 +214,12 @@ export function AnalyticsDashboard() {
   const insights = generateInsights()
 
   const summaryCards = summary ? [
-    { label: 'Total Views', value: summary.totalViews.toLocaleString(), icon: <Eye className="size-4" />, color: 'text-emerald-600' },
-    { label: 'Total Likes', value: summary.totalLikes.toLocaleString(), icon: <Heart className="size-4" />, color: 'text-pink-600' },
-    { label: 'Total Shares', value: summary.totalShares.toLocaleString(), icon: <Share2 className="size-4" />, color: 'text-teal-600' },
-    { label: 'Total Komentar', value: summary.totalComments.toLocaleString(), icon: <MessageCircle className="size-4" />, color: 'text-amber-600' },
-    { label: 'Total Klik', value: summary.totalClicks.toLocaleString(), icon: <MousePointerClick className="size-4" />, color: 'text-violet-600' },
-    { label: 'Avg. Conversion', value: `${summary.avgConversion.toFixed(2)}%`, icon: <TrendingUp className="size-4" />, color: 'text-cyan-600' },
+    { label: 'Total Views', value: summary.totalViews.toLocaleString(), icon: Eye, color: 'text-emerald-600', gradient: 'bg-gradient-to-br from-emerald-400 via-emerald-500 to-teal-600 text-white shadow-lg shadow-emerald-500/30 ring-1 ring-white/10' },
+    { label: 'Total Likes', value: summary.totalLikes.toLocaleString(), icon: Heart, color: 'text-pink-600', gradient: 'bg-gradient-to-br from-pink-400 via-rose-500 to-fuchsia-600 text-white shadow-lg shadow-pink-500/30 ring-1 ring-white/10' },
+    { label: 'Total Shares', value: summary.totalShares.toLocaleString(), icon: Share2, color: 'text-teal-600', gradient: 'bg-gradient-to-br from-teal-400 via-cyan-500 to-emerald-600 text-white shadow-lg shadow-teal-500/30 ring-1 ring-white/10' },
+    { label: 'Total Komentar', value: summary.totalComments.toLocaleString(), icon: MessageCircle, color: 'text-amber-600', gradient: 'bg-gradient-to-br from-amber-400 via-orange-500 to-red-500 text-white shadow-lg shadow-amber-500/30 ring-1 ring-white/10' },
+    { label: 'Total Klik', value: summary.totalClicks.toLocaleString(), icon: MousePointerClick, color: 'text-violet-600', gradient: 'bg-gradient-to-br from-violet-400 via-purple-500 to-indigo-600 text-white shadow-lg shadow-violet-500/30 ring-1 ring-white/10' },
+    { label: 'Avg. Conversion', value: `${summary.avgConversion.toFixed(2)}%`, icon: TrendingUp, color: 'text-cyan-600', gradient: 'bg-gradient-to-br from-sky-400 via-blue-500 to-indigo-600 text-white shadow-lg shadow-sky-500/30 ring-1 ring-white/10' },
   ] : []
 
   return (
@@ -279,7 +279,7 @@ export function AnalyticsDashboard() {
                 <Card key={idx} className="border-emerald-200/50 dark:border-emerald-900/50">
                   <CardContent className="p-3">
                     <div className="flex items-center gap-2 mb-1">
-                      <span className={card.color}>{card.icon}</span>
+                      <PremiumStatIcon icon={card.icon} gradient={card.gradient} size="xs" />
                       <span className="text-[10px] text-muted-foreground">{card.label}</span>
                     </div>
                     <div className={`text-lg font-bold ${card.color}`}>{card.value}</div>

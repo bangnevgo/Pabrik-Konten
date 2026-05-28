@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Plus, Trash2, FileText, Smartphone, Megaphone, Mail, ShoppingBag, Video, Copy } from 'lucide-react'
-import { PresetIcon } from '@/components/premium-icons'
+import { Plus, Trash2, Copy } from 'lucide-react'
+import { PresetIcon, PremiumNavIcon } from '@/components/premium-icons'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -38,13 +38,13 @@ import {
 import { useContentStore, type ContentType, type TemplateItem } from '@/lib/store'
 import { useToast } from '@/hooks/use-toast'
 
-const contentTypeLabels: Record<string, { label: string; icon: React.ReactNode; color: string }> = {
-  blog: { label: 'Artikel', icon: <FileText className="size-3.5" />, color: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300' },
-  social: { label: 'Sosmed', icon: <Smartphone className="size-3.5" />, color: 'bg-pink-100 text-pink-800 dark:bg-pink-900/50 dark:text-pink-300' },
-  marketing: { label: 'Marketing', icon: <Megaphone className="size-3.5" />, color: 'bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300' },
-  email: { label: 'Email', icon: <Mail className="size-3.5" />, color: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300' },
-  product: { label: 'Produk', icon: <ShoppingBag className="size-3.5" />, color: 'bg-violet-100 text-violet-800 dark:bg-violet-900/50 dark:text-violet-300' },
-  video: { label: 'Video', icon: <Video className="size-3.5" />, color: 'bg-rose-100 text-rose-800 dark:bg-rose-900/50 dark:text-rose-300' },
+const contentTypeLabels: Record<string, { label: string; preset: string; color: string }> = {
+  blog: { label: 'Artikel', preset: 'blog', color: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300' },
+  social: { label: 'Sosmed', preset: 'social', color: 'bg-pink-100 text-pink-800 dark:bg-pink-900/50 dark:text-pink-300' },
+  marketing: { label: 'Marketing', preset: 'marketing', color: 'bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300' },
+  email: { label: 'Email', preset: 'email', color: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300' },
+  product: { label: 'Produk', preset: 'product', color: 'bg-violet-100 text-violet-800 dark:bg-violet-900/50 dark:text-violet-300' },
+  video: { label: 'Video', preset: 'video', color: 'bg-rose-100 text-rose-800 dark:bg-rose-900/50 dark:text-rose-300' },
 }
 
 export function TemplateBank() {
@@ -279,7 +279,7 @@ export function TemplateBank() {
                     <CardContent className="p-4 flex-1 flex flex-col">
                       <div className="flex items-start justify-between gap-2 mb-3">
                         <div className="flex items-center gap-2">
-                          {info?.icon}
+                          <PremiumNavIcon preset={info?.preset as any} active size="xs" />
                           <Badge variant="secondary" className={`text-[10px] ${info?.color || ''}`}>
                             {info?.label || template.contentType}
                           </Badge>

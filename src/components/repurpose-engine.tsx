@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import ReactMarkdown from 'react-markdown'
-import { RefreshCw, Copy, Check, Save, ArrowRight, Sparkles } from 'lucide-react'
-import { PresetIcon, IconBox } from '@/components/premium-icons'
+import { RefreshCw, Copy, Save, ArrowRight, Sparkles } from 'lucide-react'
+import { PresetIcon, IconBox, PremiumNavIcon } from '@/components/premium-icons'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
@@ -23,13 +23,13 @@ import { useContentStore, type HistoryItem } from '@/lib/store'
 import { useToast } from '@/hooks/use-toast'
 
 const formatOptions = [
-  { id: 'instagram', label: 'Instagram Caption', color: 'bg-pink-100 text-pink-800 dark:bg-pink-900/50 dark:text-pink-300' },
-  { id: 'twitter', label: 'Twitter Thread', color: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300' },
-  { id: 'blog', label: 'Artikel Blog', color: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300' },
-  { id: 'email', label: 'Email Newsletter', color: 'bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300' },
-  { id: 'tiktok', label: 'Skrip TikTok', color: 'bg-violet-100 text-violet-800 dark:bg-violet-900/50 dark:text-violet-300' },
-  { id: 'linkedin', label: 'LinkedIn Post', color: 'bg-teal-100 text-teal-800 dark:bg-teal-900/50 dark:text-teal-300' },
-  { id: 'youtube', label: 'Deskripsi YouTube', color: 'bg-rose-100 text-rose-800 dark:bg-rose-900/50 dark:text-rose-300' },
+  { id: 'instagram', label: 'Instagram Caption', preset: 'instagram', color: 'bg-pink-100 text-pink-800 dark:bg-pink-900/50 dark:text-pink-300' },
+  { id: 'twitter', label: 'Twitter Thread', preset: 'twitter', color: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300' },
+  { id: 'blog', label: 'Artikel Blog', preset: 'blog', color: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300' },
+  { id: 'email', label: 'Email Newsletter', preset: 'email', color: 'bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300' },
+  { id: 'tiktok', label: 'Skrip TikTok', preset: 'video', color: 'bg-violet-100 text-violet-800 dark:bg-violet-900/50 dark:text-violet-300' },
+  { id: 'linkedin', label: 'LinkedIn Post', preset: 'linkedin', color: 'bg-teal-100 text-teal-800 dark:bg-teal-900/50 dark:text-teal-300' },
+  { id: 'youtube', label: 'Deskripsi YouTube', preset: 'youtube', color: 'bg-rose-100 text-rose-800 dark:bg-rose-900/50 dark:text-rose-300' },
 ]
 
 export function RepurposeEngine() {
@@ -213,6 +213,7 @@ export function RepurposeEngine() {
                       checked={selectedFormats.includes(format.id)}
                       onCheckedChange={() => handleToggleFormat(format.id)}
                     />
+                    <PremiumNavIcon preset={format.preset as any} active={selectedFormats.includes(format.id)} size="xs" />
                     <span className="text-xs font-medium">{format.label}</span>
                   </label>
                 ))}

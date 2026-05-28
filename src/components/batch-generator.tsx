@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import ReactMarkdown from 'react-markdown'
-import { Sparkles, Copy, Save, Check, FileText, Smartphone, Megaphone, Mail, ShoppingBag, Video } from 'lucide-react'
-import { PresetIcon } from '@/components/premium-icons'
+import { Sparkles, Copy, Save, Check } from 'lucide-react'
+import { PresetIcon, PremiumNavIcon } from '@/components/premium-icons'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
@@ -22,13 +22,13 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { useContentStore, type ContentType } from '@/lib/store'
 import { useToast } from '@/hooks/use-toast'
 
-const contentTypes: { id: ContentType; label: string; icon: React.ReactNode; color: string }[] = [
-  { id: 'blog', label: 'Artikel Blog', icon: <FileText className="size-4" />, color: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300' },
-  { id: 'social', label: 'Media Sosial', icon: <Smartphone className="size-4" />, color: 'bg-pink-100 text-pink-800 dark:bg-pink-900/50 dark:text-pink-300' },
-  { id: 'marketing', label: 'Copy Marketing', icon: <Megaphone className="size-4" />, color: 'bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300' },
-  { id: 'email', label: 'Email Marketing', icon: <Mail className="size-4" />, color: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300' },
-  { id: 'product', label: 'Deskripsi Produk', icon: <ShoppingBag className="size-4" />, color: 'bg-violet-100 text-violet-800 dark:bg-violet-900/50 dark:text-violet-300' },
-  { id: 'video', label: 'Skrip Video', icon: <Video className="size-4" />, color: 'bg-rose-100 text-rose-800 dark:bg-rose-900/50 dark:text-rose-300' },
+const contentTypes: { id: ContentType; label: string; preset: string; color: string }[] = [
+  { id: 'blog', label: 'Artikel Blog', preset: 'blog', color: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300' },
+  { id: 'social', label: 'Media Sosial', preset: 'social', color: 'bg-pink-100 text-pink-800 dark:bg-pink-900/50 dark:text-pink-300' },
+  { id: 'marketing', label: 'Copy Marketing', preset: 'marketing', color: 'bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300' },
+  { id: 'email', label: 'Email Marketing', preset: 'email', color: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300' },
+  { id: 'product', label: 'Deskripsi Produk', preset: 'product', color: 'bg-violet-100 text-violet-800 dark:bg-violet-900/50 dark:text-violet-300' },
+  { id: 'video', label: 'Skrip Video', preset: 'video', color: 'bg-rose-100 text-rose-800 dark:bg-rose-900/50 dark:text-rose-300' },
 ]
 
 export function BatchGenerator() {
@@ -155,7 +155,7 @@ export function BatchGenerator() {
                       checked={selectedFormats.includes(ct.id)}
                       onCheckedChange={() => handleToggleFormat(ct.id)}
                     />
-                    {ct.icon}
+                    <PremiumNavIcon preset={ct.preset as any} active={selectedFormats.includes(ct.id)} size="xs" />
                     <span className="text-xs font-medium">{ct.label}</span>
                   </label>
                 ))}
@@ -245,7 +245,7 @@ export function BatchGenerator() {
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center gap-2">
-                        {typeInfo?.icon}
+                        <PremiumNavIcon preset={typeInfo?.preset as any} active size="xs" />
                         <span className="font-medium text-sm text-emerald-700 dark:text-emerald-400">
                           {typeInfo?.label}
                         </span>

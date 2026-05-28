@@ -121,3 +121,41 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ── Premium Icon Shimmer ── */
+@keyframes icon-shimmer {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-15deg);
+  }
+}
+
+.icon-shimmer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 40%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0.15) 60%,
+    transparent 100%
+  );
+  transform: translateX(-100%) skewX(-15deg);
+  animation: icon-shimmer 3s ease-in-out infinite;
+  border-radius: inherit;
+}
+
+/* Stagger the shimmer on different icons */
+.icon-shimmer:nth-child(3n+1)::before { animation-delay: 0s; }
+.icon-shimmer:nth-child(3n+2)::before { animation-delay: 1s; }
+.icon-shimmer:nth-child(3n+3)::before { animation-delay: 2s; }
+
+/* Hover boost for gradient icons */
+@keyframes icon-pulse-glow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.15); }
+}
