@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model ContentHistory {
+  id          String   @id @default(cuid())
+  contentType String   // blog|social|marketing|email|product|video
+  title       String
+  prompt      String
+  result      String
+  tone        String?
+  platform    String?
+  audience    String?
+  language    String?
+  length      String?
+  createdAt   DateTime @default(now())
+}
