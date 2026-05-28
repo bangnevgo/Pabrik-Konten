@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import ZAI from 'z-ai-web-dev-sdk'
+import { getAIClient } from '@/lib/ai/provider'
 
 const systemPrompts: Record<string, string> = {
   blog: `Kamu adalah penulis artikel blog profesional. Buatkan artikel blog yang menarik, informatif, dan SEO-friendly berdasarkan topik yang diberikan. Artikel harus memiliki judul, pendahuluan, beberapa subjudul, dan kesimpulan. Gunakan format markdown yang rapi.`,
@@ -31,9 +31,10 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { contentType, prompt, tone, platform, targetAudience, language, length, mode, sourceContent, targetFormats } = body
 
+    const ai = getAIClient()
+
     if (mode === 'batch' && prompt) {
       const formats = targetFormats || ['blog', 'social', 'email']
-      const zai = new ZAI()
       const results: Record<string, string> = {}
 
       for (const fmt of formats) {
@@ -45,15 +46,12 @@ export async function POST(request: NextRequest) {
           ? `Write ${fmt} content about: "${prompt}"\nTone: ${tone}\nLength: ${lengthDesc}\nTarget audience: ${targetAudience || 'general'}${platform ? `\nPlatform: ${platform}` : ''}`
           : `Buatkan konten ${fmt} tentang: "${prompt}"\nGaya bahasa: ${toneDesc}\nPanjang: ${lengthDesc}\nTarget audiens: ${targetAudience || 'umum'}${platform ? `\nPlatform: ${platform}` : ''}`
 
-        const response = await zai.chat.completions.create({
-          model: 'default',
-          messages: [
-            { role: 'system', content: sysPrompt },
-            { role: 'user', content: userPrompt },
-          ],
-        })
+        const response = await ai.chat([
+          { role: 'system', content: sysPrompt },
+          { role: 'user', content: userPrompt },
+        ])
 
-        results[fmt] = response.choices?.[0]?.message?.content || ''
+        results[fmt] = response.content
       }
 
       return NextResponse.json({ mode: 'batch', results })
@@ -61,22 +59,17 @@ export async function POST(request: NextRequest) {
 
     if (mode === 'repurpose' && sourceContent) {
       const formats = targetFormats || ['social', 'email', 'video']
-      const zai = new ZAI()
 
       const userPrompt = language === 'en'
         ? `Repurpose the following content into these formats: ${formats.join(', ')}\n\nSource content:\n${sourceContent}\n\nCreate a complete version for each format.`
         : `Ubah konten berikut ke format: ${formats.join(', ')}\n\nKonten sumber:\n${sourceContent}\n\nBuat versi lengkap untuk setiap format.`
 
-      const response = await zai.chat.completions.create({
-        model: 'default',
-        messages: [
-          { role: 'system', content: repurposePrompt },
-          { role: 'user', content: userPrompt },
-        ],
-      })
+      const response = await ai.chat([
+        { role: 'system', content: repurposePrompt },
+        { role: 'user', content: userPrompt },
+      ])
 
-      const content = response.choices?.[0]?.message?.content || ''
-      return NextResponse.json({ mode: 'repurpose', content })
+      return NextResponse.json({ mode: 'repurpose', content: response.content })
     }
 
     // Default single generation
@@ -97,23 +90,19 @@ export async function POST(request: NextRequest) {
       if (platform) userPrompt += `\nPlatform: ${platform}`
     }
 
-    const zai = new ZAI()
-    const response = await zai.chat.completions.create({
-      model: 'default',
-      messages: [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: userPrompt },
-      ],
-    })
+    const response = await ai.chat([
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: userPrompt },
+    ])
 
-    const generatedContent = response.choices?.[0]?.message?.content || ''
-    if (!generatedContent) {
+    if (!response.content) {
       return NextResponse.json({ error: 'Gagal menghasilkan konten. Silakan coba lagi.' }, { status: 500 })
     }
 
-    return NextResponse.json({ content: generatedContent })
+    return NextResponse.json({ content: response.content })
   } catch (error) {
     console.error('Generate API error:', error)
-    return NextResponse.json({ error: 'Terjadi kesalahan saat menghasilkan konten. Silakan coba lagi.' }, { status: 500 })
+    const message = error instanceof Error ? error.message : 'Terjadi kesalahan saat menghasilkan konten. Silakan coba lagi.'
+    return NextResponse.json({ error: message }, { status: 500 })
   }
 }
