@@ -52,7 +52,7 @@ const contentTypeLabels: Record<string, string> = {
 }
 
 const contentTypeColors: Record<string, string> = {
-  blog: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300',
+  blog: 'bg-violet-100 text-violet-800 dark:bg-violet-900/50 dark:text-violet-300',
   social: 'bg-pink-100 text-pink-800 dark:bg-pink-900/50 dark:text-pink-300',
   marketing: 'bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300',
   email: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300',
@@ -62,9 +62,9 @@ const contentTypeColors: Record<string, string> = {
 
 const statusLabels: Record<string, { label: string; color: string }> = {
   draft: { label: 'Draft', color: 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300' },
-  approved: { label: 'Disetujui', color: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300' },
+  approved: { label: 'Disetujui', color: 'bg-violet-100 text-violet-800 dark:bg-violet-900/50 dark:text-violet-300' },
   scheduled: { label: 'Dijadwalkan', color: 'bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300' },
-  published: { label: 'Dipublikasi', color: 'bg-teal-100 text-teal-800 dark:bg-teal-900/50 dark:text-teal-300' },
+  published: { label: 'Dipublikasi', color: 'bg-fuchsia-100 text-fuchsia-800 dark:bg-fuchsia-900/50 dark:text-fuchsia-300' },
 }
 
 export function EnhancedLibrary() {
@@ -193,7 +193,7 @@ export function EnhancedLibrary() {
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h2 className="text-xl font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-2">
+            <h2 className="text-xl font-bold text-violet-700 dark:text-violet-400 flex items-center gap-2">
               <PresetIcon preset="library" size="md" variant="gradient" /> Perpustakaan Konten
             </h2>
             <p className="text-sm text-muted-foreground">Kelola semua konten yang telah dibuat</p>
@@ -206,7 +206,7 @@ export function EnhancedLibrary() {
 
       {/* Search & Filters */}
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.1 }}>
-        <Card className="border-emerald-200/50 dark:border-emerald-900/50">
+        <Card className="border-violet-200/50 dark:border-violet-900/50">
           <CardContent className="p-4">
             <div className="flex flex-col sm:flex-row gap-3">
               <div className="relative flex-1">
@@ -280,7 +280,7 @@ export function EnhancedLibrary() {
                 transition={{ duration: 0.2 }}
               >
                 <Card
-                  className="border-emerald-200/50 dark:border-emerald-900/50 hover:border-emerald-300 dark:hover:border-emerald-700 transition-colors cursor-pointer h-full"
+                  className="border-violet-200/50 dark:border-violet-900/50 hover:border-violet-300 dark:hover:border-violet-700 transition-colors cursor-pointer h-full"
                   onClick={() => openDetail(item)}
                 >
                   <CardContent className="p-4">
@@ -302,7 +302,7 @@ export function EnhancedLibrary() {
                     {item.tags && (
                       <div className="flex flex-wrap gap-1 mb-2">
                         {item.tags.split(',').slice(0, 3).map((tag, i) => (
-                          <span key={i} className="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400">
+                          <span key={i} className="text-[10px] px-1.5 py-0.5 rounded-full bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-400">
                             #{tag.trim()}
                           </span>
                         ))}
@@ -325,7 +325,7 @@ export function EnhancedLibrary() {
       <Dialog open={detailOpen} onOpenChange={setDetailOpen}>
         <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-emerald-700 dark:text-emerald-400">{selectedItem?.title}</DialogTitle>
+            <DialogTitle className="text-violet-700 dark:text-violet-400">{selectedItem?.title}</DialogTitle>
           </DialogHeader>
           {selectedItem && (
             <div className="space-y-4 mt-4">
@@ -405,12 +405,12 @@ export function EnhancedLibrary() {
                       onChange={(e) => setEditTags(e.target.value)}
                     />
                   </div>
-                  <Button onClick={handleSaveEdit} className="bg-emerald-600 hover:bg-emerald-700 text-white">
+                  <Button onClick={handleSaveEdit} className="bg-violet-600 hover:bg-violet-700 text-white">
                     <Save className="size-4 mr-1.5" /> Simpan sebagai Versi Baru
                   </Button>
                 </div>
               ) : (
-                <div className="prose prose-sm dark:prose-invert max-w-none prose-headings:text-emerald-700 dark:prose-headings:text-emerald-400 border rounded-lg p-4">
+                <div className="prose prose-sm dark:prose-invert max-w-none prose-headings:text-violet-700 dark:prose-headings:text-violet-400 border rounded-lg p-4">
                   <ReactMarkdown>{displayContent}</ReactMarkdown>
                 </div>
               )}
@@ -426,7 +426,7 @@ export function EnhancedLibrary() {
                       variant={activeVersion === 0 ? 'default' : 'outline'}
                       size="sm"
                       onClick={() => setActiveVersion(0)}
-                      className={activeVersion === 0 ? 'bg-emerald-600 hover:bg-emerald-700 text-white' : ''}
+                      className={activeVersion === 0 ? 'bg-violet-600 hover:bg-violet-700 text-white' : ''}
                     >
                       Versi Terbaru
                     </Button>
@@ -436,7 +436,7 @@ export function EnhancedLibrary() {
                         variant={activeVersion === idx + 1 ? 'default' : 'outline'}
                         size="sm"
                         onClick={() => setActiveVersion(idx + 1)}
-                        className={activeVersion === idx + 1 ? 'bg-emerald-600 hover:bg-emerald-700 text-white' : ''}
+                        className={activeVersion === idx + 1 ? 'bg-violet-600 hover:bg-violet-700 text-white' : ''}
                       >
                         v{v.version} - {new Date(v.createdAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'short' })}
                       </Button>

@@ -37,7 +37,7 @@ const contentTypeLabels: Record<string, string> = {
 }
 
 const contentTypeColors: Record<string, string> = {
-  blog: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300',
+  blog: 'bg-violet-100 text-violet-800 dark:bg-violet-900/50 dark:text-violet-300',
   social: 'bg-pink-100 text-pink-800 dark:bg-pink-900/50 dark:text-pink-300',
   marketing: 'bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300',
   email: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300',
@@ -107,10 +107,10 @@ export function HistoryPanel() {
   const filteredHistory = history
 
   return (
-    <Card className="border-emerald-200/50 dark:border-emerald-900/50">
+    <Card className="border-violet-200/50 dark:border-violet-900/50">
       <CardHeader>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <CardTitle className="text-emerald-700 dark:text-emerald-400 flex items-center gap-2">
+          <CardTitle className="text-violet-700 dark:text-violet-400 flex items-center gap-2">
             📋 Riwayat Konten
           </CardTitle>
           <div className="flex items-center gap-2">
@@ -156,7 +156,7 @@ export function HistoryPanel() {
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <div className="group rounded-lg border p-3 hover:border-emerald-300 dark:hover:border-emerald-700 transition-colors cursor-pointer">
+                  <div className="group rounded-lg border p-3 hover:border-violet-300 dark:hover:border-violet-700 transition-colors cursor-pointer">
                     <div className="flex items-start justify-between gap-2 mb-2">
                       <Badge
                         variant="secondary"

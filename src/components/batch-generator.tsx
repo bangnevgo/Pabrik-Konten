@@ -23,7 +23,7 @@ import { useContentStore, type ContentType } from '@/lib/store'
 import { useToast } from '@/hooks/use-toast'
 
 const contentTypes: { id: ContentType; label: string; preset: string; color: string }[] = [
-  { id: 'blog', label: 'Artikel Blog', preset: 'blog', color: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300' },
+  { id: 'blog', label: 'Artikel Blog', preset: 'blog', color: 'bg-violet-100 text-violet-800 dark:bg-violet-900/50 dark:text-violet-300' },
   { id: 'social', label: 'Media Sosial', preset: 'social', color: 'bg-pink-100 text-pink-800 dark:bg-pink-900/50 dark:text-pink-300' },
   { id: 'marketing', label: 'Copy Marketing', preset: 'marketing', color: 'bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300' },
   { id: 'email', label: 'Email Marketing', preset: 'email', color: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300' },
@@ -119,9 +119,9 @@ export function BatchGenerator() {
   return (
     <div className="space-y-6">
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
-        <Card className="border-emerald-200/50 dark:border-emerald-900/50">
+        <Card className="border-violet-200/50 dark:border-violet-900/50">
           <CardHeader>
-            <CardTitle className="text-emerald-700 dark:text-emerald-400 flex items-center gap-2">
+            <CardTitle className="text-violet-700 dark:text-violet-400 flex items-center gap-2">
               <PresetIcon preset="batch" size="md" variant="gradient" /> Generator Batch
             </CardTitle>
             <p className="text-sm text-muted-foreground">Buat beberapa jenis konten sekaligus dari satu brief</p>
@@ -147,8 +147,8 @@ export function BatchGenerator() {
                     key={ct.id}
                     className={`flex items-center gap-2 p-3 rounded-lg border cursor-pointer transition-all ${
                       selectedFormats.includes(ct.id)
-                        ? 'border-emerald-400 bg-emerald-50 dark:bg-emerald-900/30 dark:border-emerald-700'
-                        : 'border-muted hover:border-emerald-200 dark:hover:border-emerald-800'
+                        ? 'border-violet-400 bg-violet-50 dark:bg-violet-900/30 dark:border-violet-700'
+                        : 'border-muted hover:border-violet-200 dark:hover:border-violet-800'
                     }`}
                   >
                     <Checkbox
@@ -217,7 +217,7 @@ export function BatchGenerator() {
             <Button
               onClick={handleGenerate}
               disabled={isGenerating || !prompt.trim() || selectedFormats.length === 0}
-              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white gap-2"
+              className="w-full bg-violet-600 hover:bg-violet-700 text-white gap-2"
             >
               <Sparkles className="size-4" />
               {isGenerating ? 'Sedang Menghasilkan...' : `Hasilkan Semua (${selectedFormats.length} Format)`}
@@ -241,12 +241,12 @@ export function BatchGenerator() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: idx * 0.1 }}
               >
-                <Card className="border-emerald-200/50 dark:border-emerald-900/50 h-full">
+                <Card className="border-violet-200/50 dark:border-violet-900/50 h-full">
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center gap-2">
                         <PremiumNavIcon preset={typeInfo?.preset as any} active size="xs" />
-                        <span className="font-medium text-sm text-emerald-700 dark:text-emerald-400">
+                        <span className="font-medium text-sm text-violet-700 dark:text-violet-400">
                           {typeInfo?.label}
                         </span>
                       </div>
@@ -269,7 +269,7 @@ export function BatchGenerator() {
                         <Skeleton className="h-4 w-5/6" />
                       </div>
                     ) : content ? (
-                      <div className="prose prose-sm dark:prose-invert max-w-none prose-headings:text-emerald-700 dark:prose-headings:text-emerald-400 max-h-80 overflow-y-auto">
+                      <div className="prose prose-sm dark:prose-invert max-w-none prose-headings:text-violet-700 dark:prose-headings:text-violet-400 max-h-80 overflow-y-auto">
                         <ReactMarkdown>{content}</ReactMarkdown>
                       </div>
                     ) : (

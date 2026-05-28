@@ -48,7 +48,7 @@ import {
 import { useContentStore, type AnalyticsItem } from '@/lib/store'
 import { useToast } from '@/hooks/use-toast'
 
-const COLORS = ['#10b981', '#14b8a6', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4']
+const COLORS = ['#8b5cf6', '#14b8a6', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4']
 
 const contentTypeLabels: Record<string, string> = {
   blog: 'Artikel',
@@ -214,9 +214,9 @@ export function AnalyticsDashboard() {
   const insights = generateInsights()
 
   const summaryCards = summary ? [
-    { label: 'Total Views', value: summary.totalViews.toLocaleString(), icon: Eye, color: 'text-emerald-600', gradient: 'bg-gradient-to-br from-emerald-400 via-emerald-500 to-teal-600 text-white shadow-lg shadow-emerald-500/30 ring-1 ring-white/10' },
+    { label: 'Total Views', value: summary.totalViews.toLocaleString(), icon: Eye, color: 'text-violet-600', gradient: 'bg-gradient-to-br from-violet-400 via-violet-500 to-fuchsia-600 text-white shadow-lg shadow-violet-500/30 ring-1 ring-white/10' },
     { label: 'Total Likes', value: summary.totalLikes.toLocaleString(), icon: Heart, color: 'text-pink-600', gradient: 'bg-gradient-to-br from-pink-400 via-rose-500 to-fuchsia-600 text-white shadow-lg shadow-pink-500/30 ring-1 ring-white/10' },
-    { label: 'Total Shares', value: summary.totalShares.toLocaleString(), icon: Share2, color: 'text-teal-600', gradient: 'bg-gradient-to-br from-teal-400 via-cyan-500 to-emerald-600 text-white shadow-lg shadow-teal-500/30 ring-1 ring-white/10' },
+    { label: 'Total Shares', value: summary.totalShares.toLocaleString(), icon: Share2, color: 'text-fuchsia-600', gradient: 'bg-gradient-to-br from-fuchsia-400 via-cyan-500 to-violet-600 text-white shadow-lg shadow-fuchsia-500/30 ring-1 ring-white/10' },
     { label: 'Total Komentar', value: summary.totalComments.toLocaleString(), icon: MessageCircle, color: 'text-amber-600', gradient: 'bg-gradient-to-br from-amber-400 via-orange-500 to-red-500 text-white shadow-lg shadow-amber-500/30 ring-1 ring-white/10' },
     { label: 'Total Klik', value: summary.totalClicks.toLocaleString(), icon: MousePointerClick, color: 'text-violet-600', gradient: 'bg-gradient-to-br from-violet-400 via-purple-500 to-indigo-600 text-white shadow-lg shadow-violet-500/30 ring-1 ring-white/10' },
     { label: 'Avg. Conversion', value: `${summary.avgConversion.toFixed(2)}%`, icon: TrendingUp, color: 'text-cyan-600', gradient: 'bg-gradient-to-br from-sky-400 via-blue-500 to-indigo-600 text-white shadow-lg shadow-sky-500/30 ring-1 ring-white/10' },
@@ -227,7 +227,7 @@ export function AnalyticsDashboard() {
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h2 className="text-xl font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-2">
+            <h2 className="text-xl font-bold text-violet-700 dark:text-violet-400 flex items-center gap-2">
               <PresetIcon preset="analytics" size="md" variant="gradient" /> Dashboard Analytics
             </h2>
             <p className="text-sm text-muted-foreground">Pantau performa konten di berbagai platform</p>
@@ -239,7 +239,7 @@ export function AnalyticsDashboard() {
             <Button variant="outline" size="sm" onClick={() => setAddDialogOpen(true)} className="gap-1.5">
               <Plus className="size-3.5" /> Tambah Data
             </Button>
-            <Button size="sm" onClick={handleSeedDemo} className="bg-emerald-600 hover:bg-emerald-700 text-white gap-1.5">
+            <Button size="sm" onClick={handleSeedDemo} className="bg-violet-600 hover:bg-violet-700 text-white gap-1.5">
               <Database className="size-3.5" /> Data Demo
             </Button>
           </div>
@@ -260,7 +260,7 @@ export function AnalyticsDashboard() {
               <h3 className="text-lg font-semibold text-muted-foreground mb-2">Belum Ada Data Analytics</h3>
               <p className="text-sm text-muted-foreground mb-4">Klik &quot;Data Demo&quot; untuk mengisi data contoh, atau tambahkan data secara manual</p>
               <div className="flex gap-2">
-                <Button onClick={handleSeedDemo} className="bg-emerald-600 hover:bg-emerald-700 text-white gap-2">
+                <Button onClick={handleSeedDemo} className="bg-violet-600 hover:bg-violet-700 text-white gap-2">
                   <Database className="size-4" /> Buat Data Demo
                 </Button>
                 <Button variant="outline" onClick={() => setAddDialogOpen(true)} className="gap-2">
@@ -276,7 +276,7 @@ export function AnalyticsDashboard() {
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.1 }}>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
               {summaryCards.map((card, idx) => (
-                <Card key={idx} className="border-emerald-200/50 dark:border-emerald-900/50">
+                <Card key={idx} className="border-violet-200/50 dark:border-violet-900/50">
                   <CardContent className="p-3">
                     <div className="flex items-center gap-2 mb-1">
                       <PremiumStatIcon icon={card.icon} gradient={card.gradient} size="xs" />
@@ -293,9 +293,9 @@ export function AnalyticsDashboard() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Bar Chart - Content Type Performance */}
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.2 }}>
-              <Card className="border-emerald-200/50 dark:border-emerald-900/50">
+              <Card className="border-violet-200/50 dark:border-violet-900/50">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm flex items-center gap-2 text-emerald-700 dark:text-emerald-400">
+                  <CardTitle className="text-sm flex items-center gap-2 text-violet-700 dark:text-violet-400">
                     <BarChart3 className="size-4" /> Performa per Tipe Konten
                   </CardTitle>
                 </CardHeader>
@@ -307,7 +307,7 @@ export function AnalyticsDashboard() {
                         <XAxis dataKey="name" tick={{ fontSize: 11 }} />
                         <YAxis tick={{ fontSize: 11 }} />
                         <Tooltip />
-                        <Bar dataKey="views" fill="#10b981" name="Views" radius={[4, 4, 0, 0]} />
+                        <Bar dataKey="views" fill="#8b5cf6" name="Views" radius={[4, 4, 0, 0]} />
                         <Bar dataKey="likes" fill="#14b8a6" name="Likes" radius={[4, 4, 0, 0]} />
                         <Bar dataKey="shares" fill="#f59e0b" name="Shares" radius={[4, 4, 0, 0]} />
                       </BarChart>
@@ -319,9 +319,9 @@ export function AnalyticsDashboard() {
 
             {/* Pie Chart - Platform Distribution */}
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.3 }}>
-              <Card className="border-emerald-200/50 dark:border-emerald-900/50">
+              <Card className="border-violet-200/50 dark:border-violet-900/50">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm flex items-center gap-2 text-emerald-700 dark:text-emerald-400">
+                  <CardTitle className="text-sm flex items-center gap-2 text-violet-700 dark:text-violet-400">
                     <PieChartIcon className="size-4" /> Distribusi Platform
                   </CardTitle>
                 </CardHeader>
@@ -355,9 +355,9 @@ export function AnalyticsDashboard() {
           {/* Insights */}
           {insights.length > 0 && (
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.4 }}>
-              <Card className="border-emerald-200/50 dark:border-emerald-900/50">
+              <Card className="border-violet-200/50 dark:border-violet-900/50">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm flex items-center gap-2 text-emerald-700 dark:text-emerald-400">
+                  <CardTitle className="text-sm flex items-center gap-2 text-violet-700 dark:text-violet-400">
                     <PresetIcon preset="lightbulb" size="sm" variant="gradient" /> Wawasan & Rekomendasi
                   </CardTitle>
                 </CardHeader>
@@ -365,7 +365,7 @@ export function AnalyticsDashboard() {
                   <ul className="space-y-2">
                     {insights.map((insight, idx) => (
                       <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
-                        <span className="text-emerald-500 mt-0.5">•</span>
+                        <span className="text-violet-500 mt-0.5">•</span>
                         {insight}
                       </li>
                     ))}
@@ -377,9 +377,9 @@ export function AnalyticsDashboard() {
 
           {/* Top Performing Content Table */}
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.5 }}>
-            <Card className="border-emerald-200/50 dark:border-emerald-900/50">
+            <Card className="border-violet-200/50 dark:border-violet-900/50">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-emerald-700 dark:text-emerald-400">Top 10 Konten Terbaik</CardTitle>
+                <CardTitle className="text-sm text-violet-700 dark:text-violet-400">Top 10 Konten Terbaik</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
@@ -487,7 +487,7 @@ export function AnalyticsDashboard() {
             <Button
               onClick={handleAddAnalytics}
               disabled={!formData.contentId}
-              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+              className="w-full bg-violet-600 hover:bg-violet-700 text-white"
             >
               Simpan Data
             </Button>

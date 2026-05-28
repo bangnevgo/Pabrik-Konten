@@ -64,9 +64,9 @@ export function BlogGenerator() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.3 }}
       >
-        <Card className="border-emerald-200/50 dark:border-emerald-900/50">
+        <Card className="border-violet-200/50 dark:border-violet-900/50">
           <CardHeader>
-            <CardTitle className="text-emerald-700 dark:text-emerald-400 flex items-center gap-2">
+            <CardTitle className="text-violet-700 dark:text-violet-400 flex items-center gap-2">
               <PresetIcon preset="blog" size="md" variant="gradient" /> Artikel Blog
             </CardTitle>
           </CardHeader>
@@ -137,7 +137,7 @@ export function BlogGenerator() {
             <Button
               onClick={handleGenerate}
               disabled={isGenerating || !prompt.trim()}
-              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white gap-2"
+              className="w-full bg-violet-600 hover:bg-violet-700 text-white gap-2"
             >
               <Sparkles className="size-4" />
               {isGenerating ? 'Sedang Menghasilkan...' : 'Hasilkan Artikel'}

@@ -42,7 +42,7 @@ const platformColors: Record<string, string> = {
   instagram: 'bg-pink-100 text-pink-800 dark:bg-pink-900/50 dark:text-pink-300',
   twitter: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300',
   facebook: 'bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300',
-  linkedin: 'bg-teal-100 text-teal-800 dark:bg-teal-900/50 dark:text-teal-300',
+  linkedin: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300',
   tiktok: 'bg-violet-100 text-violet-800 dark:bg-violet-900/50 dark:text-violet-300',
   youtube: 'bg-rose-100 text-rose-800 dark:bg-rose-900/50 dark:text-rose-300',
   email: 'bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300',
@@ -50,7 +50,7 @@ const platformColors: Record<string, string> = {
 
 const statusIcons: Record<string, React.ReactNode> = {
   queued: <Clock className="size-3 text-amber-500" />,
-  sent: <CheckCircle className="size-3 text-emerald-500" />,
+  sent: <CheckCircle className="size-3 text-violet-500" />,
   failed: <XCircle className="size-3 text-destructive" />,
 }
 
@@ -174,12 +174,12 @@ export function ContentCalendar() {
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h2 className="text-xl font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-2">
+            <h2 className="text-xl font-bold text-violet-700 dark:text-violet-400 flex items-center gap-2">
               <PresetIcon preset="calendar" size="md" variant="gradient" /> Kalender Konten
             </h2>
             <p className="text-sm text-muted-foreground">Jadwalkan dan kelola publikasi konten</p>
           </div>
-          <Button onClick={() => { setSelectedDay(new Date()); setScheduleDialogOpen(true) }} className="bg-emerald-600 hover:bg-emerald-700 text-white gap-2">
+          <Button onClick={() => { setSelectedDay(new Date()); setScheduleDialogOpen(true) }} className="bg-violet-600 hover:bg-violet-700 text-white gap-2">
             <Plus className="size-4" /> Jadwalkan Konten
           </Button>
         </div>
@@ -194,9 +194,9 @@ export function ContentCalendar() {
               <div className="text-xs text-muted-foreground">Dijadwalkan</div>
             </CardContent>
           </Card>
-          <Card className="border-emerald-200/50 dark:border-emerald-900/50">
+          <Card className="border-violet-200/50 dark:border-violet-900/50">
             <CardContent className="p-3 text-center">
-              <div className="text-2xl font-bold text-emerald-600">{totalSent}</div>
+              <div className="text-2xl font-bold text-violet-600">{totalSent}</div>
               <div className="text-xs text-muted-foreground">Terkirim</div>
             </CardContent>
           </Card>
@@ -211,7 +211,7 @@ export function ContentCalendar() {
 
       {/* Calendar */}
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.2 }}>
-        <Card className="border-emerald-200/50 dark:border-emerald-900/50">
+        <Card className="border-violet-200/50 dark:border-violet-900/50">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -254,12 +254,12 @@ export function ContentCalendar() {
                 return (
                   <div
                     key={day}
-                    className={`min-h-[80px] sm:min-h-[100px] rounded-lg border p-1.5 cursor-pointer transition-colors hover:border-emerald-300 dark:hover:border-emerald-700 ${
-                      today ? 'border-emerald-400 bg-emerald-50/50 dark:bg-emerald-900/20 dark:border-emerald-700' : 'border-muted'
+                    className={`min-h-[80px] sm:min-h-[100px] rounded-lg border p-1.5 cursor-pointer transition-colors hover:border-violet-300 dark:hover:border-violet-700 ${
+                      today ? 'border-violet-400 bg-violet-50/50 dark:bg-violet-900/20 dark:border-violet-700' : 'border-muted'
                     }`}
                     onClick={() => { setSelectedDay(new Date(year, month, day)); setScheduleDialogOpen(true) }}
                   >
-                    <div className={`text-xs font-medium mb-1 ${today ? 'text-emerald-600 dark:text-emerald-400' : 'text-muted-foreground'}`}>
+                    <div className={`text-xs font-medium mb-1 ${today ? 'text-violet-600 dark:text-violet-400' : 'text-muted-foreground'}`}>
                       {day}
                     </div>
                     <div className="space-y-0.5">
@@ -288,9 +288,9 @@ export function ContentCalendar() {
       {/* Schedule List */}
       {schedules.length > 0 && (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.3 }}>
-          <Card className="border-emerald-200/50 dark:border-emerald-900/50">
+          <Card className="border-violet-200/50 dark:border-violet-900/50">
             <CardHeader>
-              <CardTitle className="text-sm text-emerald-700 dark:text-emerald-400">Jadwal Mendatang</CardTitle>
+              <CardTitle className="text-sm text-violet-700 dark:text-violet-400">Jadwal Mendatang</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-2 max-h-64 overflow-y-auto">
@@ -298,7 +298,7 @@ export function ContentCalendar() {
                   .filter(s => s.status === 'queued')
                   .sort((a, b) => new Date(a.scheduledAt).getTime() - new Date(b.scheduledAt).getTime())
                   .map(schedule => (
-                    <div key={schedule.id} className="flex items-center justify-between gap-3 p-2 rounded-lg border hover:border-emerald-300 dark:hover:border-emerald-700 transition-colors">
+                    <div key={schedule.id} className="flex items-center justify-between gap-3 p-2 rounded-lg border hover:border-violet-300 dark:hover:border-violet-700 transition-colors">
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-0.5">
                           <Badge variant="secondary" className={`text-[10px] ${platformColors[schedule.platform] || ''}`}>
@@ -400,7 +400,7 @@ export function ContentCalendar() {
               <Button
                 onClick={handleCreateSchedule}
                 disabled={!selectedContentId || !selectedPlatform}
-                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+                className="w-full bg-violet-600 hover:bg-violet-700 text-white"
               >
                 Jadwalkan
               </Button>

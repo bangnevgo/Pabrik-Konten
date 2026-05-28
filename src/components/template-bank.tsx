@@ -39,7 +39,7 @@ import { useContentStore, type ContentType, type TemplateItem } from '@/lib/stor
 import { useToast } from '@/hooks/use-toast'
 
 const contentTypeLabels: Record<string, { label: string; preset: string; color: string }> = {
-  blog: { label: 'Artikel', preset: 'blog', color: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300' },
+  blog: { label: 'Artikel', preset: 'blog', color: 'bg-violet-100 text-violet-800 dark:bg-violet-900/50 dark:text-violet-300' },
   social: { label: 'Sosmed', preset: 'social', color: 'bg-pink-100 text-pink-800 dark:bg-pink-900/50 dark:text-pink-300' },
   marketing: { label: 'Marketing', preset: 'marketing', color: 'bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300' },
   email: { label: 'Email', preset: 'email', color: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300' },
@@ -127,14 +127,14 @@ export function TemplateBank() {
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h2 className="text-xl font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-2">
+            <h2 className="text-xl font-bold text-violet-700 dark:text-violet-400 flex items-center gap-2">
               <PresetIcon preset="templates" size="md" variant="gradient" /> Bank Template
             </h2>
             <p className="text-sm text-muted-foreground">Simpan dan gunakan template prompt untuk membuat konten lebih cepat</p>
           </div>
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
-              <Button className="bg-emerald-600 hover:bg-emerald-700 text-white gap-2">
+              <Button className="bg-violet-600 hover:bg-violet-700 text-white gap-2">
                 <Plus className="size-4" /> Buat Template
               </Button>
             </DialogTrigger>
@@ -215,7 +215,7 @@ export function TemplateBank() {
                 <Button
                   onClick={handleCreateTemplate}
                   disabled={!formState.name || !formState.prompt}
-                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+                  className="w-full bg-violet-600 hover:bg-violet-700 text-white"
                 >
                   Simpan Template
                 </Button>
@@ -230,7 +230,7 @@ export function TemplateBank() {
             variant={filter === 'all' ? 'default' : 'outline'}
             size="sm"
             onClick={() => setFilter('all')}
-            className={filter === 'all' ? 'bg-emerald-600 hover:bg-emerald-700 text-white' : ''}
+            className={filter === 'all' ? 'bg-violet-600 hover:bg-violet-700 text-white' : ''}
           >
             Semua
           </Button>
@@ -240,7 +240,7 @@ export function TemplateBank() {
               variant={filter === key ? 'default' : 'outline'}
               size="sm"
               onClick={() => setFilter(key as ContentType)}
-              className={filter === key ? 'bg-emerald-600 hover:bg-emerald-700 text-white' : ''}
+              className={filter === key ? 'bg-violet-600 hover:bg-violet-700 text-white' : ''}
             >
               {info.label}
             </Button>
@@ -256,7 +256,7 @@ export function TemplateBank() {
               <PresetIcon preset="templates" size="lg" variant="light" />
               <h3 className="text-lg font-semibold text-muted-foreground mb-2">Belum Ada Template</h3>
               <p className="text-sm text-muted-foreground mb-4">Buat template pertamamu untuk mempercepat pembuatan konten</p>
-              <Button onClick={() => setDialogOpen(true)} className="bg-emerald-600 hover:bg-emerald-700 text-white gap-2">
+              <Button onClick={() => setDialogOpen(true)} className="bg-violet-600 hover:bg-violet-700 text-white gap-2">
                 <Plus className="size-4" /> Buat Template Pertama
               </Button>
             </CardContent>
@@ -275,7 +275,7 @@ export function TemplateBank() {
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Card className="border-emerald-200/50 dark:border-emerald-900/50 hover:border-emerald-300 dark:hover:border-emerald-700 transition-colors h-full flex flex-col">
+                  <Card className="border-violet-200/50 dark:border-violet-900/50 hover:border-violet-300 dark:hover:border-violet-700 transition-colors h-full flex flex-col">
                     <CardContent className="p-4 flex-1 flex flex-col">
                       <div className="flex items-start justify-between gap-2 mb-3">
                         <div className="flex items-center gap-2">
@@ -284,7 +284,7 @@ export function TemplateBank() {
                             {info?.label || template.contentType}
                           </Badge>
                           {template.isDefault && (
-                            <Badge variant="secondary" className="text-[10px] bg-teal-100 text-teal-800 dark:bg-teal-900/50 dark:text-teal-300">
+                            <Badge variant="secondary" className="text-[10px] bg-fuchsia-100 text-fuchsia-800 dark:bg-fuchsia-900/50 dark:text-fuchsia-300">
                               Default
                             </Badge>
                           )}

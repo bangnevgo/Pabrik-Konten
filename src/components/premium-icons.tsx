@@ -55,9 +55,9 @@ export function IconBox({ icon: Icon, className, iconClassName, size = 'md', noS
 export const iconPresets = {
   blog: {
     icon: BookOpen,
-    gradient: 'bg-gradient-to-br from-emerald-400 via-emerald-500 to-teal-600 text-white shadow-lg shadow-emerald-500/30 ring-1 ring-white/10',
-    light: 'bg-emerald-50/80 text-emerald-600 ring-1 ring-emerald-200/60 dark:bg-emerald-900/30 dark:text-emerald-400 dark:ring-emerald-700/40',
-    glow: 'shadow-emerald-500/40',
+    gradient: 'bg-gradient-to-br from-violet-400 via-violet-500 to-fuchsia-600 text-white shadow-lg shadow-violet-500/30 ring-1 ring-white/10',
+    light: 'bg-violet-50/80 text-violet-600 ring-1 ring-violet-200/60 dark:bg-violet-900/30 dark:text-violet-400 dark:ring-violet-700/40',
+    glow: 'shadow-violet-500/40',
   },
   social: {
     icon: Smartphone,
@@ -91,9 +91,9 @@ export const iconPresets = {
   },
   repurpose: {
     icon: RefreshCw,
-    gradient: 'bg-gradient-to-br from-teal-400 via-cyan-500 to-emerald-600 text-white shadow-lg shadow-teal-500/30 ring-1 ring-white/10',
-    light: 'bg-teal-50/80 text-teal-600 ring-1 ring-teal-200/60 dark:bg-teal-900/30 dark:text-teal-400 dark:ring-teal-700/40',
-    glow: 'shadow-teal-500/40',
+    gradient: 'bg-gradient-to-br from-fuchsia-400 via-cyan-500 to-violet-600 text-white shadow-lg shadow-fuchsia-500/30 ring-1 ring-white/10',
+    light: 'bg-fuchsia-50/80 text-fuchsia-600 ring-1 ring-fuchsia-200/60 dark:bg-fuchsia-900/30 dark:text-fuchsia-400 dark:ring-fuchsia-700/40',
+    glow: 'shadow-fuchsia-500/40',
   },
   batch: {
     icon: Layers,
@@ -109,9 +109,9 @@ export const iconPresets = {
   },
   library: {
     icon: Library,
-    gradient: 'bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600 text-white shadow-lg shadow-emerald-500/30 ring-1 ring-white/10',
-    light: 'bg-emerald-50/80 text-emerald-600 ring-1 ring-emerald-200/60 dark:bg-emerald-900/30 dark:text-emerald-400 dark:ring-emerald-700/40',
-    glow: 'shadow-emerald-500/40',
+    gradient: 'bg-gradient-to-br from-violet-400 via-fuchsia-500 to-cyan-600 text-white shadow-lg shadow-violet-500/30 ring-1 ring-white/10',
+    light: 'bg-violet-50/80 text-violet-600 ring-1 ring-violet-200/60 dark:bg-violet-900/30 dark:text-violet-400 dark:ring-violet-700/40',
+    glow: 'shadow-violet-500/40',
   },
   calendar: {
     icon: CalendarDays,
@@ -127,15 +127,15 @@ export const iconPresets = {
   },
   create: {
     icon: Wand2,
-    gradient: 'bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600 text-white shadow-lg shadow-emerald-500/30 ring-1 ring-white/10',
-    light: 'bg-emerald-50/80 text-emerald-600 ring-1 ring-emerald-200/60 dark:bg-emerald-900/30 dark:text-emerald-400 dark:ring-emerald-700/40',
-    glow: 'shadow-emerald-500/40',
+    gradient: 'bg-gradient-to-br from-violet-400 via-fuchsia-500 to-cyan-600 text-white shadow-lg shadow-violet-500/30 ring-1 ring-white/10',
+    light: 'bg-violet-50/80 text-violet-600 ring-1 ring-violet-200/60 dark:bg-violet-900/30 dark:text-violet-400 dark:ring-violet-700/40',
+    glow: 'shadow-violet-500/40',
   },
   factory: {
     icon: Zap,
-    gradient: 'bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600 text-white shadow-lg shadow-emerald-500/30 ring-1 ring-white/10',
-    light: 'bg-emerald-50/80 text-emerald-600 ring-1 ring-emerald-200/60 dark:bg-emerald-900/30 dark:text-emerald-400 dark:ring-emerald-700/40',
-    glow: 'shadow-emerald-500/40',
+    gradient: 'bg-gradient-to-br from-violet-400 via-fuchsia-500 to-cyan-600 text-white shadow-lg shadow-violet-500/30 ring-1 ring-white/10',
+    light: 'bg-violet-50/80 text-violet-600 ring-1 ring-violet-200/60 dark:bg-violet-900/30 dark:text-violet-400 dark:ring-violet-700/40',
+    glow: 'shadow-violet-500/40',
   },
   lightbulb: {
     icon: Lightbulb,
@@ -193,15 +193,15 @@ export const iconPresets = {
   },
   share: {
     icon: Share2,
-    gradient: 'bg-gradient-to-br from-teal-400 via-emerald-500 to-green-600 text-white shadow-lg shadow-teal-500/30 ring-1 ring-white/10',
-    light: 'bg-teal-50/80 text-teal-600 ring-1 ring-teal-200/60 dark:bg-teal-900/30 dark:text-teal-400 dark:ring-teal-700/40',
-    glow: 'shadow-teal-500/40',
+    gradient: 'bg-gradient-to-br from-fuchsia-400 via-violet-500 to-green-600 text-white shadow-lg shadow-fuchsia-500/30 ring-1 ring-white/10',
+    light: 'bg-fuchsia-50/80 text-fuchsia-600 ring-1 ring-fuchsia-200/60 dark:bg-fuchsia-900/30 dark:text-fuchsia-400 dark:ring-fuchsia-700/40',
+    glow: 'shadow-fuchsia-500/40',
   },
   pen: {
     icon: PenLine,
-    gradient: 'bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600 text-white shadow-lg shadow-emerald-500/30 ring-1 ring-white/10',
-    light: 'bg-emerald-50/80 text-emerald-600 ring-1 ring-emerald-200/60 dark:bg-emerald-900/30 dark:text-emerald-400 dark:ring-emerald-700/40',
-    glow: 'shadow-emerald-500/40',
+    gradient: 'bg-gradient-to-br from-violet-400 via-fuchsia-500 to-cyan-600 text-white shadow-lg shadow-violet-500/30 ring-1 ring-white/10',
+    light: 'bg-violet-50/80 text-violet-600 ring-1 ring-violet-200/60 dark:bg-violet-900/30 dark:text-violet-400 dark:ring-violet-700/40',
+    glow: 'shadow-violet-500/40',
   },
 } as const
 
