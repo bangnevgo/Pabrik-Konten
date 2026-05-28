@@ -57,7 +57,7 @@ export function ContentFactory() {
                   <TabsTrigger
                     key={tab.value}
                     value={tab.value}
-                    className="flex-1 min-w-[70px] data-[state=active]:bg-violet-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all text-xs sm:text-sm gap-1.5"
+                    className="flex-1 min-w-[70px] data-[state=active]:bg-rose-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all text-xs sm:text-sm gap-1.5"
                   >
                     <PremiumNavIcon
                       preset={tab.preset as any}
@@ -102,7 +102,7 @@ export function ContentFactory() {
     <div className="min-h-screen flex flex-col bg-background">
       {/* Top Header */}
       <header className="relative overflow-hidden border-b">
-        <div className="absolute inset-0 bg-gradient-to-r from-violet-600 via-fuchsia-500 to-cyan-500" />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)' }} />
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iYSIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVHJhbnNmb3JtPSJyb3RhdGUoNDUpIj48cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSI0MCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNhKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==')] opacity-30" />
         <div className="relative flex items-center justify-between px-4 py-3 sm:py-4">
           <div className="flex items-center gap-3">
@@ -126,7 +126,7 @@ export function ContentFactory() {
                 <h1 className="text-lg sm:text-2xl font-bold text-white tracking-tight">
                   PABRIK KONTEN
                 </h1>
-                <p className="text-violet-100 text-[10px] sm:text-xs hidden sm:block">
+                <p className="text-white/70 text-[10px] sm:text-xs hidden sm:block">
                   Full Content Factory — Buat, Repurpose, Jadwalkan, Analisis
                 </p>
               </div>
@@ -139,7 +139,7 @@ export function ContentFactory() {
             className="flex items-center gap-2"
           >
             {currentNav && (
-              <div className="hidden sm:flex items-center gap-1.5 text-violet-100 text-xs bg-white/10 backdrop-blur-sm rounded-lg px-2.5 py-1.5 ring-1 ring-white/10">
+              <div className="hidden sm:flex items-center gap-1.5 text-white/80 text-xs bg-white/10 backdrop-blur-sm rounded-lg px-2.5 py-1.5 ring-1 ring-white/10">
                 <PresetIcon preset={currentNav.preset as any} size="xs" variant="gradient" className="!bg-white/20 !text-white !shadow-none !ring-white/20" noShimmer />
                 <span>{currentNav.label}</span>
               </div>
@@ -164,7 +164,7 @@ export function ContentFactory() {
                   onClick={() => setActiveView(item.view)}
                   className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 group ${
                     isActive
-                      ? 'bg-violet-50 text-violet-700 dark:bg-violet-900/30 dark:text-violet-400 shadow-sm ring-1 ring-violet-200/60 dark:ring-violet-800/40'
+                      ? 'bg-rose-50 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400 shadow-sm ring-1 ring-rose-200/60 dark:ring-rose-800/40'
                       : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
                   }`}
                 >
@@ -175,7 +175,7 @@ export function ContentFactory() {
                   />
                   <span>{item.label}</span>
                   {isActive && (
-                    <ChevronRight className="size-3.5 ml-auto text-violet-500" />
+                    <ChevronRight className="size-3.5 ml-auto text-rose-500" />
                   )}
                 </button>
               )
@@ -224,7 +224,7 @@ export function ContentFactory() {
                         onClick={() => { setActiveView(item.view); setSidebarOpen(false) }}
                         className={`w-full flex items-center gap-2.5 px-3 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
                           isActive
-                            ? 'bg-violet-50 text-violet-700 dark:bg-violet-900/30 dark:text-violet-400 shadow-sm ring-1 ring-violet-200/60 dark:ring-violet-800/40'
+                            ? 'bg-orange-50 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400 shadow-sm ring-1 ring-rose-200/60 dark:ring-orange-800/40'
                             : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
                         }`}
                       >
@@ -238,7 +238,7 @@ export function ContentFactory() {
                           <div className="text-[10px] text-muted-foreground font-normal">{item.description}</div>
                         </div>
                         {isActive && (
-                          <ChevronRight className="size-3.5 ml-auto text-violet-500" />
+                          <ChevronRight className="size-3.5 ml-auto text-rose-500" />
                         )}
                       </button>
                     )
@@ -275,7 +275,7 @@ export function ContentFactory() {
                 onClick={() => setActiveView(item.view)}
                 className={`flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-xl text-[10px] font-medium transition-all duration-200 min-w-[48px] ${
                   isActive
-                    ? 'text-violet-600 dark:text-violet-400'
+                    ? 'text-rose-600 dark:text-orange-400'
                     : 'text-muted-foreground'
                 }`}
               >

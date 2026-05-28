@@ -9,7 +9,7 @@ const ContentFactory = dynamic(
     loading: () => (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="flex flex-col items-center gap-4">
-          <div className="size-10 animate-spin rounded-full border-4 border-violet-200 border-t-violet-600" />
+          <div className="size-10 animate-spin rounded-full border-4 border-orange-200 border-t-orange-600" />
           <p className="text-sm text-muted-foreground">Memuat Pabrik Konten...</p>
         </div>
       </div>

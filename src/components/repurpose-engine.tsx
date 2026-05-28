@@ -25,9 +25,9 @@ import { useToast } from '@/hooks/use-toast'
 const formatOptions = [
   { id: 'instagram', label: 'Instagram Caption', preset: 'instagram', color: 'bg-pink-100 text-pink-800 dark:bg-pink-900/50 dark:text-pink-300' },
   { id: 'twitter', label: 'Twitter Thread', preset: 'twitter', color: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300' },
-  { id: 'blog', label: 'Artikel Blog', preset: 'blog', color: 'bg-violet-100 text-violet-800 dark:bg-violet-900/50 dark:text-violet-300' },
+  { id: 'blog', label: 'Artikel Blog', preset: 'blog', color: 'bg-rose-100 text-rose-800 dark:bg-orange-900/50 dark:text-orange-300' },
   { id: 'email', label: 'Email Newsletter', preset: 'email', color: 'bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300' },
-  { id: 'tiktok', label: 'Skrip TikTok', preset: 'video', color: 'bg-violet-100 text-violet-800 dark:bg-violet-900/50 dark:text-violet-300' },
+  { id: 'tiktok', label: 'Skrip TikTok', preset: 'video', color: 'bg-rose-100 text-rose-800 dark:bg-orange-900/50 dark:text-orange-300' },
   { id: 'linkedin', label: 'LinkedIn Post', preset: 'linkedin', color: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300' },
   { id: 'youtube', label: 'Deskripsi YouTube', preset: 'youtube', color: 'bg-rose-100 text-rose-800 dark:bg-rose-900/50 dark:text-rose-300' },
 ]
@@ -145,9 +145,9 @@ export function RepurposeEngine() {
   return (
     <div className="space-y-6">
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
-        <Card className="border-violet-200/50 dark:border-violet-900/50">
+        <Card className="border-rose-200/50 dark:border-orange-900/50">
           <CardHeader>
-            <CardTitle className="text-violet-700 dark:text-violet-400 flex items-center gap-2">
+            <CardTitle className="text-rose-700 dark:text-rose-400 flex items-center gap-2">
               <PresetIcon preset="repurpose" size="md" variant="gradient" /> Mesin Repurpose Konten
             </CardTitle>
             <p className="text-sm text-muted-foreground">Ubah satu konten menjadi berbagai format untuk platform yang berbeda</p>
@@ -155,10 +155,10 @@ export function RepurposeEngine() {
           <CardContent className="space-y-6">
             {/* Visual Flow */}
             <div className="flex items-center justify-center gap-3 p-4 bg-muted/30 rounded-lg">
-              <div className="flex-1 max-w-[160px] p-3 bg-violet-50 dark:bg-violet-900/30 rounded-lg text-center border border-violet-200 dark:border-violet-800">
-                <p className="text-xs font-medium text-violet-700 dark:text-violet-400">Konten Sumber</p>
+              <div className="flex-1 max-w-[160px] p-3 bg-orange-50 dark:bg-orange-900/30 rounded-lg text-center border border-rose-200 dark:border-orange-800">
+                <p className="text-xs font-medium text-rose-700 dark:text-rose-400">Konten Sumber</p>
               </div>
-              <ArrowRight className="size-5 text-violet-500 shrink-0" />
+              <ArrowRight className="size-5 text-rose-500 shrink-0" />
               <div className="flex-1 flex flex-wrap gap-1.5 justify-center">
                 {selectedFormats.map(f => {
                   const opt = formatOptions.find(o => o.id === f)
@@ -205,8 +205,8 @@ export function RepurposeEngine() {
                     key={format.id}
                     className={`flex items-center gap-2 p-2.5 rounded-lg border cursor-pointer transition-all ${
                       selectedFormats.includes(format.id)
-                        ? 'border-violet-400 bg-violet-50 dark:bg-violet-900/30 dark:border-violet-700'
-                        : 'border-muted hover:border-violet-200 dark:hover:border-violet-800'
+                        ? 'border-rose-400 bg-orange-50 dark:bg-orange-900/30 dark:border-orange-700'
+                        : 'border-muted hover:border-rose-200 dark:hover:border-orange-800'
                     }`}
                   >
                     <Checkbox
@@ -254,7 +254,7 @@ export function RepurposeEngine() {
             <Button
               onClick={handleGenerate}
               disabled={isGenerating || !sourceContent.trim() || selectedFormats.length === 0}
-              className="w-full bg-violet-600 hover:bg-violet-700 text-white gap-2"
+              className="w-full bg-rose-600 hover:bg-rose-700 text-white gap-2"
             >
               <RefreshCw className={`size-4 ${isGenerating ? 'animate-spin' : ''}`} />
               {isGenerating ? 'Sedang Memproses...' : 'Repurpose Sekarang'}
@@ -267,7 +267,7 @@ export function RepurposeEngine() {
       {isGenerating && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
           {[1, 2, 3].map(i => (
-            <Card key={i} className="border-violet-200/50 dark:border-violet-900/50">
+            <Card key={i} className="border-rose-200/50 dark:border-orange-900/50">
               <CardContent className="p-6">
                 <Skeleton className="h-5 w-40 mb-4" />
                 <div className="space-y-2">
@@ -283,12 +283,12 @@ export function RepurposeEngine() {
 
       {!isGenerating && parsedFormats.length > 0 && (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
-          <h3 className="text-lg font-semibold text-violet-700 dark:text-violet-400">Hasil Repurpose</h3>
+          <h3 className="text-lg font-semibold text-rose-700 dark:text-rose-400">Hasil Repurpose</h3>
           {parsedFormats.map((format, idx) => (
-            <Card key={idx} className="border-violet-200/50 dark:border-violet-900/50">
+            <Card key={idx} className="border-rose-200/50 dark:border-orange-900/50">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-4">
-                  <h4 className="font-semibold text-violet-700 dark:text-violet-400">{format.name}</h4>
+                  <h4 className="font-semibold text-rose-700 dark:text-rose-400">{format.name}</h4>
                   <div className="flex gap-1.5">
                     <Button variant="outline" size="sm" onClick={() => handleCopy(format.content)} className="gap-1.5">
                       <Copy className="size-3.5" /> Salin
@@ -298,7 +298,7 @@ export function RepurposeEngine() {
                     </Button>
                   </div>
                 </div>
-                <div className="prose prose-sm dark:prose-invert max-w-none prose-headings:text-violet-700 dark:prose-headings:text-violet-400">
+                <div className="prose prose-sm dark:prose-invert max-w-none prose-headings:text-orange-700 dark:prose-headings:text-orange-400">
                   <ReactMarkdown>{format.content}</ReactMarkdown>
                 </div>
               </CardContent>
@@ -309,17 +309,17 @@ export function RepurposeEngine() {
 
       {!isGenerating && generatedContent && parsedFormats.length === 0 && (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-          <Card className="border-violet-200/50 dark:border-violet-900/50">
+          <Card className="border-rose-200/50 dark:border-orange-900/50">
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-4">
-                <h4 className="font-semibold text-violet-700 dark:text-violet-400">Hasil Repurpose</h4>
+                <h4 className="font-semibold text-rose-700 dark:text-rose-400">Hasil Repurpose</h4>
                 <div className="flex gap-1.5">
                   <Button variant="outline" size="sm" onClick={() => handleCopy(generatedContent)} className="gap-1.5">
                     <Copy className="size-3.5" /> Salin Semua
                   </Button>
                 </div>
               </div>
-              <div className="prose prose-sm dark:prose-invert max-w-none prose-headings:text-violet-700 dark:prose-headings:text-violet-400">
+              <div className="prose prose-sm dark:prose-invert max-w-none prose-headings:text-orange-700 dark:prose-headings:text-orange-400">
                 <ReactMarkdown>{generatedContent}</ReactMarkdown>
               </div>
             </CardContent>

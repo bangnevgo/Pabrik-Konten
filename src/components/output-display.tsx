@@ -165,11 +165,11 @@ export function OutputDisplay({
 
   if (isGenerating) {
     return (
-      <Card className="h-full border-violet-200 dark:border-violet-900">
+      <Card className="h-full border-rose-200 dark:border-rose-900">
         <CardContent className="p-6">
           <div className="flex items-center gap-3 mb-4">
-            <div className="size-3 rounded-full bg-violet-500 animate-pulse" />
-            <span className="text-sm text-violet-600 dark:text-violet-400 font-medium">
+            <div className="size-3 rounded-full bg-rose-500 animate-pulse" />
+            <span className="text-sm text-rose-600 dark:text-rose-400 font-medium">
               Sedang menghasilkan konten...
             </span>
           </div>
@@ -210,7 +210,7 @@ export function OutputDisplay({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <Card className="border-violet-200 dark:border-violet-900">
+      <Card className="border-rose-200 dark:border-rose-900">
         <CardContent className="p-6">
           {/* Edit / Preview Toggle */}
           {editMode ? (
@@ -221,12 +221,12 @@ export function OutputDisplay({
                 rows={14}
                 className="font-mono text-sm"
               />
-              <Button onClick={handleSaveEdit} size="sm" className="bg-violet-600 hover:bg-violet-700 text-white">
+              <Button onClick={handleSaveEdit} size="sm" className="bg-rose-600 hover:bg-rose-700 text-white">
                 <Save className="size-3.5 mr-1.5" /> Simpan sebagai Versi Baru
               </Button>
             </div>
           ) : (
-            <div className="prose prose-sm dark:prose-invert max-w-none prose-headings:text-violet-700 dark:prose-headings:text-violet-400 prose-a:text-violet-600 dark:prose-a:text-violet-400">
+            <div className="prose prose-sm dark:prose-invert max-w-none prose-headings:text-orange-700 dark:prose-headings:text-orange-400 prose-a:text-rose-600 dark:prose-a:text-orange-400">
               <ReactMarkdown>{content}</ReactMarkdown>
             </div>
           )}
@@ -234,11 +234,11 @@ export function OutputDisplay({
           {/* Action Buttons */}
           <div className="flex flex-wrap items-center gap-2 mt-6 pt-4 border-t">
             <Button variant="outline" size="sm" onClick={handleCopy} className="gap-1.5">
-              {copied ? <Check className="size-3.5 text-violet-500" /> : <Copy className="size-3.5" />}
+              {copied ? <Check className="size-3.5 text-rose-500" /> : <Copy className="size-3.5" />}
               {copied ? 'Tersalin!' : 'Salin'}
             </Button>
             <Button variant="outline" size="sm" onClick={handleSave} className="gap-1.5">
-              {saved ? <Check className="size-3.5 text-violet-500" /> : <Save className="size-3.5" />}
+              {saved ? <Check className="size-3.5 text-rose-500" /> : <Save className="size-3.5" />}
               {saved ? 'Tersimpan!' : 'Simpan'}
             </Button>
             <Button variant="outline" size="sm" onClick={onRegenerate} className="gap-1.5">
@@ -341,7 +341,7 @@ export function OutputDisplay({
             <Button
               onClick={handleSchedule}
               disabled={!savedContentId || !scheduleDate}
-              className="w-full bg-violet-600 hover:bg-violet-700 text-white gap-2"
+              className="w-full bg-rose-600 hover:bg-rose-700 text-white gap-2"
             >
               <Send className="size-4" /> Jadwalkan
             </Button>

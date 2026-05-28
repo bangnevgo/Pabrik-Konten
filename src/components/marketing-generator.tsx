@@ -64,9 +64,9 @@ export function MarketingGenerator() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.3 }}
       >
-        <Card className="border-violet-200/50 dark:border-violet-900/50">
+        <Card className="border-rose-200/50 dark:border-orange-900/50">
           <CardHeader>
-            <CardTitle className="text-violet-700 dark:text-violet-400 flex items-center gap-2">
+            <CardTitle className="text-rose-700 dark:text-rose-400 flex items-center gap-2">
               <PresetIcon preset="marketing" size="md" variant="gradient" /> Copy Marketing
             </CardTitle>
           </CardHeader>
@@ -137,7 +137,7 @@ export function MarketingGenerator() {
             <Button
               onClick={handleGenerate}
               disabled={isGenerating || !prompt.trim()}
-              className="w-full bg-violet-600 hover:bg-violet-700 text-white gap-2"
+              className="w-full bg-rose-600 hover:bg-rose-700 text-white gap-2"
             >
               <Sparkles className="size-4" />
               {isGenerating ? 'Sedang Menghasilkan...' : 'Hasilkan Copy Marketing'}
