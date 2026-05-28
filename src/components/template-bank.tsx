@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Plus, Trash2, FileText, Smartphone, Megaphone, Mail, ShoppingBag, Video, Copy } from 'lucide-react'
+import { PresetIcon } from '@/components/premium-icons'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -127,7 +128,7 @@ export function TemplateBank() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 className="text-xl font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-2">
-              📋 Bank Template
+              <PresetIcon preset="templates" size="md" variant="gradient" /> Bank Template
             </h2>
             <p className="text-sm text-muted-foreground">Simpan dan gunakan template prompt untuk membuat konten lebih cepat</p>
           </div>
@@ -252,7 +253,7 @@ export function TemplateBank() {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <Card className="border-dashed border-2 border-muted-foreground/25">
             <CardContent className="p-10 flex flex-col items-center justify-center text-center">
-              <div className="text-5xl mb-4">📋</div>
+              <PresetIcon preset="templates" size="lg" variant="light" />
               <h3 className="text-lg font-semibold text-muted-foreground mb-2">Belum Ada Template</h3>
               <p className="text-sm text-muted-foreground mb-4">Buat template pertamamu untuk mempercepat pembuatan konten</p>
               <Button onClick={() => setDialogOpen(true)} className="bg-emerald-600 hover:bg-emerald-700 text-white gap-2">

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import ReactMarkdown from 'react-markdown'
 import { Sparkles, Copy, Save, Check, FileText, Smartphone, Megaphone, Mail, ShoppingBag, Video } from 'lucide-react'
+import { PresetIcon } from '@/components/premium-icons'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
@@ -121,7 +122,7 @@ export function BatchGenerator() {
         <Card className="border-emerald-200/50 dark:border-emerald-900/50">
           <CardHeader>
             <CardTitle className="text-emerald-700 dark:text-emerald-400 flex items-center gap-2">
-              📦 Generator Batch
+              <PresetIcon preset="batch" size="md" variant="gradient" /> Generator Batch
             </CardTitle>
             <p className="text-sm text-muted-foreground">Buat beberapa jenis konten sekaligus dari satu brief</p>
           </CardHeader>

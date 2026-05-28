@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import ReactMarkdown from 'react-markdown'
 import { RefreshCw, Copy, Check, Save, ArrowRight, Sparkles } from 'lucide-react'
+import { PresetIcon, IconBox } from '@/components/premium-icons'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
@@ -147,7 +148,7 @@ export function RepurposeEngine() {
         <Card className="border-emerald-200/50 dark:border-emerald-900/50">
           <CardHeader>
             <CardTitle className="text-emerald-700 dark:text-emerald-400 flex items-center gap-2">
-              🔄 Mesin Repurpose Konten
+              <PresetIcon preset="repurpose" size="md" variant="gradient" /> Mesin Repurpose Konten
             </CardTitle>
             <p className="text-sm text-muted-foreground">Ubah satu konten menjadi berbagai format untuk platform yang berbeda</p>
           </CardHeader>

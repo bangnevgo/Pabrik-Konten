@@ -3,9 +3,9 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  Factory, Sparkles, RefreshCw, Package, LayoutTemplate, Library,
-  CalendarDays, BarChart3, Menu, X, ChevronRight
+  Factory, Menu, X, ChevronRight
 } from 'lucide-react'
+import { PresetIcon } from '@/components/premium-icons'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ThemeToggle } from '@/components/theme-toggle'
@@ -23,23 +23,23 @@ import { ContentCalendar } from '@/components/content-calendar'
 import { AnalyticsDashboard } from '@/components/analytics-dashboard'
 import { useContentStore, type ContentType, type AppView } from '@/lib/store'
 
-const navItems: { view: AppView; label: string; icon: React.ReactNode; description: string }[] = [
-  { view: 'create', label: 'Buat Konten', icon: <Sparkles className="size-4" />, description: 'Buat konten baru dari nol' },
-  { view: 'repurpose', label: 'Repurpose', icon: <RefreshCw className="size-4" />, description: 'Ubah konten ke format lain' },
-  { view: 'batch', label: 'Batch', icon: <Package className="size-4" />, description: 'Buat banyak konten sekaligus' },
-  { view: 'templates', label: 'Template', icon: <LayoutTemplate className="size-4" />, description: 'Bank template prompt' },
-  { view: 'library', label: 'Perpustakaan', icon: <Library className="size-4" />, description: 'Kelola semua konten' },
-  { view: 'calendar', label: 'Kalender', icon: <CalendarDays className="size-4" />, description: 'Jadwalkan publikasi' },
-  { view: 'analytics', label: 'Analytics', icon: <BarChart3 className="size-4" />, description: 'Pantau performa konten' },
+const navItems: { view: AppView; label: string; preset: string; description: string }[] = [
+  { view: 'create', label: 'Buat Konten', preset: 'create', description: 'Buat konten baru dari nol' },
+  { view: 'repurpose', label: 'Repurpose', preset: 'repurpose', description: 'Ubah konten ke format lain' },
+  { view: 'batch', label: 'Batch', preset: 'batch', description: 'Buat banyak konten sekaligus' },
+  { view: 'templates', label: 'Template', preset: 'templates', description: 'Bank template prompt' },
+  { view: 'library', label: 'Perpustakaan', preset: 'library', description: 'Kelola semua konten' },
+  { view: 'calendar', label: 'Kalender', preset: 'calendar', description: 'Jadwalkan publikasi' },
+  { view: 'analytics', label: 'Analytics', preset: 'analytics', description: 'Pantau performa konten' },
 ]
 
-const contentTabs: { value: ContentType; label: string; icon: string }[] = [
-  { value: 'blog', label: 'Artikel', icon: '📝' },
-  { value: 'social', label: 'Sosmed', icon: '📱' },
-  { value: 'marketing', label: 'Marketing', icon: '🎯' },
-  { value: 'email', label: 'Email', icon: '✉️' },
-  { value: 'product', label: 'Produk', icon: '🛍️' },
-  { value: 'video', label: 'Video', icon: '🎬' },
+const contentTabs: { value: ContentType; label: string; preset: string }[] = [
+  { value: 'blog', label: 'Artikel', preset: 'blog' },
+  { value: 'social', label: 'Sosmed', preset: 'social' },
+  { value: 'marketing', label: 'Marketing', preset: 'marketing' },
+  { value: 'email', label: 'Email', preset: 'email' },
+  { value: 'product', label: 'Produk', preset: 'product' },
+  { value: 'video', label: 'Video', preset: 'video' },
 ]
 
 export function ContentFactory() {
@@ -57,9 +57,9 @@ export function ContentFactory() {
                   <TabsTrigger
                     key={tab.value}
                     value={tab.value}
-                    className="flex-1 min-w-[70px] data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all text-xs sm:text-sm"
+                    className="flex-1 min-w-[70px] data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all text-xs sm:text-sm gap-1.5"
                   >
-                    <span className="mr-1">{tab.icon}</span>
+                    <PresetIcon preset={tab.preset as any} size="sm" variant="light" className={activeTab === tab.value ? 'bg-white/20 !text-white' : ''} />
                     {tab.label}
                   </TabsTrigger>
                 ))}
@@ -116,7 +116,7 @@ export function ContentFactory() {
               transition={{ duration: 0.3 }}
               className="flex items-center gap-2"
             >
-              <Factory className="size-6 sm:size-8 text-white" />
+              <PresetIcon preset="factory" size="lg" variant="gradient" className="bg-white/20 !bg-gradient-to-br !from-white/30 !to-white/10 !text-white !shadow-none" />
               <div>
                 <h1 className="text-lg sm:text-2xl font-bold text-white tracking-tight">
                   PABRIK KONTEN
@@ -134,8 +134,8 @@ export function ContentFactory() {
             className="flex items-center gap-2"
           >
             {currentNav && (
-              <div className="hidden sm:flex items-center gap-1.5 text-emerald-100 text-xs bg-white/10 rounded-lg px-2.5 py-1">
-                {currentNav.icon}
+              <div className="hidden sm:flex items-center gap-1.5 text-emerald-100 text-xs bg-white/10 rounded-lg px-2.5 py-1.5">
+                <PresetIcon preset={currentNav.preset as any} size="sm" variant="light" className="bg-white/20 !text-white" />
                 <span>{currentNav.label}</span>
               </div>
             )}
@@ -161,7 +161,7 @@ export function ContentFactory() {
                     : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
                 }`}
               >
-                {item.icon}
+                <PresetIcon preset={item.preset as any} size="sm" variant={activeView === item.view ? 'gradient' : 'light'} />
                 <span>{item.label}</span>
                 {activeView === item.view && (
                   <ChevronRight className="size-3.5 ml-auto text-emerald-500" />
@@ -170,9 +170,9 @@ export function ContentFactory() {
             ))}
           </nav>
           <div className="p-3 border-t">
-            <p className="text-[10px] text-muted-foreground text-center">
-              🏭 Pabrik Konten v2.0
-            </p>
+            <div className="flex items-center justify-center gap-1.5 text-[10px] text-muted-foreground">
+              <PresetIcon preset="factory" size="sm" variant="light" /> Pabrik Konten v2.0
+            </div>
           </div>
         </aside>
 
@@ -196,7 +196,7 @@ export function ContentFactory() {
               >
                 <div className="flex items-center justify-between p-4 border-b">
                   <div className="flex items-center gap-2">
-                    <Factory className="size-5 text-emerald-600" />
+                    <PresetIcon preset="factory" size="md" variant="gradient" />
                     <span className="font-bold text-sm">PABRIK KONTEN</span>
                   </div>
                   <Button variant="ghost" size="icon" className="size-8" onClick={() => setSidebarOpen(false)}>
@@ -214,7 +214,7 @@ export function ContentFactory() {
                           : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
                       }`}
                     >
-                      {item.icon}
+                      <PresetIcon preset={item.preset as any} size="sm" variant={activeView === item.view ? 'gradient' : 'light'} />
                       <div className="text-left">
                         <div>{item.label}</div>
                         <div className="text-[10px] text-muted-foreground font-normal">{item.description}</div>
@@ -258,7 +258,7 @@ export function ContentFactory() {
                   : 'text-muted-foreground'
               }`}
             >
-              {item.icon}
+              <PresetIcon preset={item.preset as any} size="sm" variant={activeView === item.view ? 'gradient' : 'light'} />
               <span className="truncate max-w-[56px]">{item.label}</span>
             </button>
           ))}
@@ -268,7 +268,7 @@ export function ContentFactory() {
       {/* Footer (Desktop only) */}
       <footer className="hidden lg:block border-t bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 text-center text-sm text-muted-foreground">
-          🏭 Pabrik Konten — Didukung oleh AI untuk menghasilkan konten berkualitas
+          Pabrik Konten — Didukung oleh AI untuk menghasilkan konten berkualitas
         </div>
       </footer>
     </div>

@@ -7,6 +7,7 @@ import {
   Search, Trash2, Filter, Calendar, Tag, RefreshCw, Copy, Save,
   ChevronDown, Eye, Edit3, Clock, CheckCircle, Send, FileText
 } from 'lucide-react'
+import { PresetIcon, IconBox } from '@/components/premium-icons'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'

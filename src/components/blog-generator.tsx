@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Sparkles } from 'lucide-react'
+import { PresetIcon } from '@/components/premium-icons'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -66,7 +67,7 @@ export function BlogGenerator() {
         <Card className="border-emerald-200/50 dark:border-emerald-900/50">
           <CardHeader>
             <CardTitle className="text-emerald-700 dark:text-emerald-400 flex items-center gap-2">
-              📝 Artikel Blog
+              <PresetIcon preset="blog" size="md" variant="gradient" /> Artikel Blog
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
